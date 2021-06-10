@@ -5,15 +5,12 @@ using UnityEngine;
 public class PlayerShot : MonoBehaviour
 {
     [SerializeField]
-    private Bullet _bullet;
-    [SerializeField]
     private Transform _shotPos;
     [SerializeField]
     private BulletCharacteristics _bulletCharacteristics;
 
     [SerializeField]
     private float _frequencyOfShots;
-
 
     void Start()
     {
