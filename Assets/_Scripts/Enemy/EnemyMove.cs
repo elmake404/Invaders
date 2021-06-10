@@ -7,24 +7,28 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private Rigidbody _rbMain;
     private PlayerLife _playerLife;
+    private Transform _positionPlayer 
+    { get { return _playerLife.transform; } }
     [SerializeField]
     private EnemyShot _enemyShot;
     private EnemyMove _enemyFaced;
     private Vector3[] _route;
 
     [SerializeField]
-    private float _speedMove;
+    private float _speedMove,_spedRotation;
     private float _movingMass = 50, _stopingMass = 5;
     private int _namberPoints;
 
     public bool IsMove { get; private set; }
     private void Start()
     {
+        _playerLife = FindObjectOfType<PlayerLife>();
         _route = Battlefield.Instens.GetPointsOnBattelefield(5, transform.position);
         StartMoving();
     }
     private void FixedUpdate()
     {
+        Rotation();
         if (IsMove)
         {
             Vector3 NextPos = _route[_namberPoints];
@@ -81,5 +85,10 @@ public class EnemyMove : MonoBehaviour
     {
         IsMove = true;
         _rbMain.mass = _movingMass;
+    }
+    private void Rotation()
+    {
+        Quaternion rotationTarget = Quaternion.LookRotation(_positionPlayer.position-transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation,rotationTarget,_spedRotation);
     }
 }

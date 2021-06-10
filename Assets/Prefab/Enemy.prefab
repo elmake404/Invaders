@@ -158,9 +158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rbMain: {fileID: 527999690364301525}
-  _playerLife: {fileID: 0}
   _enemyShot: {fileID: 8273552120440685110}
   _speedMove: 0.1
+  _spedRotation: 0.3
 --- !u!114 &8273552120440685110
 MonoBehaviour:
   m_ObjectHideFlags: 0
