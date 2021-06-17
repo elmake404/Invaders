@@ -26,6 +26,40 @@ public class Field : MonoBehaviour
     private float _lengthNearPoint
     { get { return _center.z - _length; } }
 
+    //[SerializeField]
+    //private bool _enableDisplayOfTheField;
+
+    private bool PositionCheckAbscissa(Vector3 position)
+    {
+        if (_widthFarPoint < position.x)
+        {
+            return false;
+        }
+        else if (_widthNearPoint > position.x)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    private bool PositionCheckApplicate(Vector3 position)
+    {
+        if (_lengthFarPoint < position.z)
+        {
+            return false;
+        }
+        else if (_lengthNearPoint > position.z)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     //возвращает крайнюю точку по оси апликат и рандомную по оси абсцис
     public Vector3 GetPoint()
     {
@@ -57,7 +91,6 @@ public class Field : MonoBehaviour
     public Vector3 GetPoint(Vector3 position, float maxDistance, Side side, bool isOnlyForward)
     {
         float Z;
-
         if (isOnlyForward)
         {
             Z = position.z < _lengthFarPoint ? position.z : _lengthFarPoint;
@@ -77,17 +110,33 @@ public class Field : MonoBehaviour
         {
             XMax = _widthFarPoint;
             XMin = _widthNearPoint;
-
-            ZMax = position.z + maxDistance > Z ? Z : position.z + maxDistance;
-            ZMin = position.z - maxDistance < _lengthNearPoint ? _lengthNearPoint : position.z - maxDistance;
+            if (PositionCheckApplicate(position))
+            {
+                ZMax = position.z + maxDistance > Z ? Z : position.z + maxDistance;
+                ZMin = position.z - maxDistance < _lengthNearPoint ? _lengthNearPoint : position.z - maxDistance;
+            }
+            else
+            {
+                ZMax = _lengthFarPoint;
+                ZMin = _center.z;
+            }
         }
         else
         {
             XMax = position.x + maxDistance > _widthFarPoint ? _widthFarPoint : position.x + maxDistance;
             XMin = position.x - maxDistance < _widthNearPoint ? _widthNearPoint : position.x - maxDistance;
 
-            ZMax = Z;
-            ZMin = _lengthNearPoint;
+            if (PositionCheckApplicate(position))
+            {
+                ZMax = Z;
+                ZMin = _lengthNearPoint;
+            }
+            else
+            {
+                ZMax = _lengthFarPoint;
+                ZMin = _center.z;
+            }
+
         }
 
 
@@ -123,7 +172,7 @@ public class Field : MonoBehaviour
     //возвращает рандомные точки по оси апликат и по оси абсцис, c выставлением максимального шага по оси апликат.
     //точка по оси апликат будет больше чем position
     // если выставить флаг isExactDistance=true точка по оси апликат будет удалена на максимальное растояние
-    public Vector3 GetPointBeck(Vector3 position, float maxBeckDistance,bool isExactDistance)
+    public Vector3 GetPointBeck(Vector3 position, float maxBeckDistance, bool isExactDistance)
     {
         float Z;
 
@@ -142,7 +191,7 @@ public class Field : MonoBehaviour
         ZMin = position.z - maxBeckDistance < Z ? Z : position.z - maxBeckDistance;
         Vector3 postion;
         if (!isExactDistance)
-         postion = new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
+            postion = new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
         else
             postion = new Vector3(Random.Range(XMin, XMax), 0, ZMax);
 
@@ -172,10 +221,10 @@ public class Field : MonoBehaviour
         return postiom;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos/*Selected*/()
     {
-        Gizmos.color = _color;
+            Gizmos.color = _color;
 
-        Gizmos.DrawCube(_center, new Vector3(_width * 2, 0.0001f, _length * 2));
+            Gizmos.DrawCube(_center, new Vector3(_width * 2, 0.0001f, _length * 2));
     }
-}
+    }

@@ -5,27 +5,22 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     [SerializeField]
+    private LevelOfComplexityOfBehavior _slevelOfComplexityOfBehavior;
+    [SerializeField]
     private Rigidbody _rbMain;
-    private PlayerLife _playerLife;
-    private Transform _positionPlayer 
-    { get { return _playerLife.transform; } }
+    private Transform _positionTarget;
     [SerializeField]
     private EnemyShot _enemyShot;
+    [SerializeField]
     private EnemyMove _enemyFaced;
     private Vector3[] _route;
 
     [SerializeField]
-    private float _speedMove,_spedRotation;
+    private float _speedMove, _spedRotation;
     private float _movingMass = 50, _stopingMass = 5;
     private int _namberPoints;
 
     public bool IsMove { get; private set; }
-    private void Start()
-    {
-        _playerLife = FindObjectOfType<PlayerLife>();
-        _route = Battlefield.Instens.GetPointsOnBattelefield(5, transform.position);
-        StartMoving();
-    }
     private void FixedUpdate()
     {
         Rotation();
@@ -39,8 +34,8 @@ public class EnemyMove : MonoBehaviour
             {
                 if (_enemyShot.IsCanShoot)
                 {
-                    if(!_enemyShot.IsShoot)
-                    _enemyShot.StartShot();
+                    if (!_enemyShot.IsShoot)
+                        _enemyShot.StartShot();
                 }
                 else
                 {
@@ -48,6 +43,13 @@ public class EnemyMove : MonoBehaviour
                     {
                         _enemyShot.AbilityToShoot();
                         _namberPoints++;
+                    }
+                    else
+                    {
+                        _enemyShot.AbilityToShoot();
+
+                        _namberPoints = 0;
+                        _route = Battlefield.Instens.GetPointsOnBattelefield(_slevelOfComplexityOfBehavior, transform.position, true);
                     }
                 }
             }
@@ -88,7 +90,32 @@ public class EnemyMove : MonoBehaviour
     }
     private void Rotation()
     {
-        Quaternion rotationTarget = Quaternion.LookRotation(_positionPlayer.position-transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation,rotationTarget,_spedRotation);
+        if (_positionTarget != null)
+        {
+            Quaternion rotationTarget = Quaternion.LookRotation(_positionTarget.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, _spedRotation);
+        }
     }
+    public void StartWar(Transform target, LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior)
+    {
+        PoolEnemy.Instance.EnemyReturnToPool -= CheckTakeEnemy;
+
+        _positionTarget = target;
+        _slevelOfComplexityOfBehavior = slevelOfComplexityOfBehavior;
+
+        _route = Battlefield.Instens.GetPointsOnBattelefield(_slevelOfComplexityOfBehavior, transform.position, false);
+        StartMoving();
+        PoolEnemy.Instance.EnemyReturnToPool += CheckTakeEnemy;
+
+    }
+    private void CheckTakeEnemy(IEnemuPool enemu)
+    {
+        if (_enemyFaced != null && _enemyFaced.gameObject == enemu.GetObject())
+        {
+            _enemyFaced = null;
+            StartMoving();
+        }
+    }
+
+
 }

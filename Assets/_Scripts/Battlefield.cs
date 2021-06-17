@@ -4,25 +4,89 @@ using UnityEngine;
 
 public enum LevelOfComplexityOfBehavior
 {
-    Easy,Normal,Hard
+    Easy, Normal, Hard, Random
 }
-public class Battlefield : Field
+[System.Serializable]
+public struct ComplexityOfBehavior
+{
+    [HideInInspector]
+    public string Name;
+    [HideInInspector]
+    public LevelOfComplexityOfBehavior LevelOfComplexityOfBehavior;
+
+    public Field[] Field;
+    public int amontOfPoints;
+    public float maxDistanceInOneStepForvard, maxDistanceInOneStepBeck;
+}
+public class Battlefield : MonoBehaviour
 {
     public static Battlefield Instens;
+    [SerializeField]
+    public ComplexityOfBehavior[] _complexityOfBehavior;
+    private Dictionary<LevelOfComplexityOfBehavior, ComplexityOfBehavior> _dictionaryFieldsComplexity = new Dictionary<LevelOfComplexityOfBehavior, ComplexityOfBehavior>();
     private void Awake()
     {
+        for (int i = 0; i < _complexityOfBehavior.Length; i++)
+        {
+
+            _dictionaryFieldsComplexity[_complexityOfBehavior[i].LevelOfComplexityOfBehavior]
+                = _complexityOfBehavior[i];
+        }
+
         Instens = this;
     }
-    public Vector3[] GetPointsOnBattelefield(int amontOfPoints,Vector3 position)
+    public Vector3[] GetPointsOnBattelefield(LevelOfComplexityOfBehavior levelOfComplexityOfBehavior, Vector3 position,bool reCall)
     {
-        Vector3[] points = new Vector3[amontOfPoints];
+        ComplexityOfBehavior complexity = _dictionaryFieldsComplexity[levelOfComplexityOfBehavior];
+        int Lenght = reCall ? complexity.amontOfPoints + 1 : complexity.amontOfPoints;
+        Vector3[] points = new Vector3[Lenght];
         Vector3 oldPos = position;
 
-        for (int i = 0; i < amontOfPoints; i++)
+        for (int i = 0; i < points.Length; i++)
         {
-            points[i] = GetPoint(oldPos,3f,Side.Length,true);
-            oldPos = points[i];
+            if (reCall)
+            {
+                reCall = false;
+                points[i] = complexity.Field[Random.Range(0, complexity.Field.Length)].GetPointBeck(position, complexity.maxDistanceInOneStepBeck, true);
+                oldPos = points[i];
+            }
+            else
+            {
+                points[i] = complexity.Field[Random.Range(0, complexity.Field.Length)].GetPoint(oldPos, complexity.maxDistanceInOneStepForvard, Side.Length, true);
+                oldPos = points[i];
+            }
         }
         return points;
+    }
+    public Vector3[] GetPointsOnBattelefieldAgain(LevelOfComplexityOfBehavior levelOfComplexityOfBehavior, Vector3 position)
+    {
+        ComplexityOfBehavior complexity = _dictionaryFieldsComplexity[levelOfComplexityOfBehavior];
+
+        Vector3[] points = new Vector3[complexity.amontOfPoints + 1];
+        Vector3 oldPos = position;
+
+        for (int i = 0; i < points.Length; i++)
+        {
+        }
+        return points;
+    }
+    private void OnValidate()
+    {
+        if (_complexityOfBehavior.Length == 0)
+        {
+            _complexityOfBehavior = new ComplexityOfBehavior[4];
+
+            _complexityOfBehavior[0].Name = "Easy";
+            _complexityOfBehavior[0].LevelOfComplexityOfBehavior = LevelOfComplexityOfBehavior.Easy;
+
+            _complexityOfBehavior[1].Name = "Normal";
+            _complexityOfBehavior[1].LevelOfComplexityOfBehavior = LevelOfComplexityOfBehavior.Normal;
+
+            _complexityOfBehavior[2].Name = "Hard";
+            _complexityOfBehavior[2].LevelOfComplexityOfBehavior = LevelOfComplexityOfBehavior.Hard;
+
+            _complexityOfBehavior[3].Name = "Random";
+            _complexityOfBehavior[3].LevelOfComplexityOfBehavior = LevelOfComplexityOfBehavior.Random;
+        }
     }
 }

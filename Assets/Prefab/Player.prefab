@@ -153,13 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7362fdfb6cd1f4fa7d0ebe27160a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: -1466296271694538990, guid: 6b8c8ca3c9e8e3942a4614b7b38c66a8,
-    type: 3}
   _shotPos: {fileID: 7663483320250834083}
   _bulletCharacteristics:
-    FlightSpeed: 0.3
-    TimeLife: 1
-    DamagePercentage: 3
+    KeyTargets: 1
+    FlightSpeed: 0.5
+    TimeLife: 3
+    Damage: 3
   _frequencyOfShots: 0.1
 --- !u!114 &7186431050438182050
 MonoBehaviour:
@@ -173,3 +172,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a5c1a30bf746e4f87446ee31150dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tagTarget: 0
+  _amountHelths: 1000

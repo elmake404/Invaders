@@ -14,6 +14,7 @@ public class PlayerShot : MonoBehaviour
 
     void Start()
     {
+        
         StartCoroutine(Shot());
     }
 
