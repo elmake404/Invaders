@@ -13,14 +13,16 @@ public class EnemyMove : MonoBehaviour
     private EnemyShot _enemyShot;
     [SerializeField]
     private EnemyMove _enemyFaced;
+    [SerializeField]
     private Vector3[] _route;
 
     [SerializeField]
     private float _speedMove, _spedRotation;
     private float _movingMass = 50, _stopingMass = 5;
+    [SerializeField]
     private int _namberPoints;
 
-    public bool IsMove { get; private set; }
+    public bool IsMove; /*{ get; private set; }*/
     private void FixedUpdate()
     {
         Rotation();
@@ -29,6 +31,7 @@ public class EnemyMove : MonoBehaviour
             Vector3 NextPos = _route[_namberPoints];
             NextPos.y = transform.position.y;
             transform.position = Vector3.MoveTowards(transform.position, NextPos, _speedMove);
+
 
             if ((transform.position - NextPos).magnitude <= 0.1f)
             {
@@ -55,29 +58,29 @@ public class EnemyMove : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (_enemyFaced == null)
-        {
-            _enemyFaced = other.GetComponent<EnemyMove>();
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (_enemyFaced == null)
+    //    {
+    //        _enemyFaced = other.GetComponent<EnemyMove>();
 
-        }
-        else
-        {
-            if (_enemyFaced.IsMove)
-            {
-                StopMovig();
-            }
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (_enemyFaced != null && _enemyFaced.gameObject == other.gameObject)
-        {
-            _enemyFaced = null;
-            StartMoving();
-        }
-    }
+    //    }
+    //    else
+    //    {
+    //        if (_enemyFaced.IsMove)
+    //        {
+    //            StopMovig();
+    //        }
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (_enemyFaced != null && _enemyFaced.gameObject == other.gameObject)
+    //    {
+    //        _enemyFaced = null;
+    //        StartMoving();
+    //    }
+    //}
     private void StopMovig()
     {
         IsMove = false;

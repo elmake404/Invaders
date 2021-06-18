@@ -78,7 +78,7 @@ public class LevelConditions : MonoBehaviour
             while (true)
             {
                 DisembarkationPoint disembarkationPoint = points[Random.Range(0, points.Count)];
-                if (disembarkationPoint.IsFree)
+                if (disembarkationPoint.CheckFree())
                 {
 
                     ActivationEnemy(disembarkationPoint);
@@ -95,7 +95,7 @@ public class LevelConditions : MonoBehaviour
         }
         if (_isWaveIsOver)
         {
-            if (_numberWave<_attackWaves.Length-1)
+            if (_numberWave < _attackWaves.Length - 1)
             {
                 _numberWave++;
                 ActivationNextWave();
@@ -142,8 +142,8 @@ public class LevelConditions : MonoBehaviour
             List<int> enemyID = new List<int>();
             foreach (var item in _enemieBehavior)
             {
-                if(item.Value.Count>0)
-                enemyID.Add(item.Key);
+                if (item.Value.Count > 0)
+                    enemyID.Add(item.Key);
             }
 
             int ID = enemyID[Random.Range(0, enemyID.Count)];

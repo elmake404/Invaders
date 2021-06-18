@@ -5,26 +5,21 @@ using UnityEngine;
 public class DisembarkationPoint : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> _enemyTake = new List<GameObject>();
-    public bool IsFree { get { return _enemyTake.Count <= 0; } }
-    private void Start()
+    private LayerMask _layerMask;
+    [SerializeField]
+    private float _radus;
+    public bool CheckFree()
     {
-        PoolEnemy.Instance.EnemyReturnToPool += CheckTakeEnemy;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        EnemyLife enemy = other.GetComponent<EnemyLife>();
-        if (enemy!=null)
+        RaycastHit[] raycastHit = Physics.SphereCastAll(transform.position, _radus, transform.up, 0.1f, _layerMask);
+        if (raycastHit.Length > 0)
         {
-            _enemyTake.Add(enemy.gameObject);
+            return true;
         }
+        return false;
     }
-    private void OnTriggerExit(Collider other)
+    private void OnDrawGizmos()
     {
-        if (_enemyTake.Contains(other.gameObject))
-        {
-            _enemyTake.Remove(gameObject);
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, _radus);
     }
-    private void CheckTakeEnemy(IEnemuPool enemu) => _enemyTake.Remove(enemu.GetObject());
 }

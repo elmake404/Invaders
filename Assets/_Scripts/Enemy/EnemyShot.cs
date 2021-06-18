@@ -19,7 +19,7 @@ public class EnemyShot : MonoBehaviour
     [SerializeField]
     private MaxMin _numberOfShotsPerRound;
 
-    public bool IsCanShoot { get; private set; }
+    public bool IsCanShoot /*{ get; private set; }*/;
     public bool IsShoot { get; private set; }
 
     void Start()

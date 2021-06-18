@@ -161,6 +161,7 @@ MonoBehaviour:
   _slevelOfComplexityOfBehavior: 0
   _rbMain: {fileID: 527999690364301525}
   _enemyShot: {fileID: 8273552120440685110}
+  _enemyFaced: {fileID: 0}
   _speedMove: 0.1
   _spedRotation: 0.3
 --- !u!114 &8273552120440685110
