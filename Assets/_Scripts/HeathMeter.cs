@@ -16,7 +16,8 @@ public class HeathMeter : MonoBehaviour
     public void Damage(float loss)
     {
         _helths -= loss;
-
+        Debug.Log(_helths);
+        Debug.Log(loss);
         if (_helths <= 0) Died?.Invoke();
     }
     public KeyTargets GetKeyTarget() => _tagTarget;

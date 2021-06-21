@@ -5,34 +5,29 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     [SerializeField]
-    private LevelOfComplexityOfBehavior _slevelOfComplexityOfBehavior;
+    private NavEnemy _navEnemy;
     [SerializeField]
     private Rigidbody _rbMain;
     private Transform _positionTarget;
     [SerializeField]
     private EnemyShot _enemyShot;
-    [SerializeField]
     private EnemyMove _enemyFaced;
-    [SerializeField]
-    private Vector3[] _route;
 
     [SerializeField]
     private float _speedMove, _spedRotation;
     private float _movingMass = 50, _stopingMass = 5;
-    [SerializeField]
-    private int _namberPoints;
 
-    public bool IsMove; /*{ get; private set; }*/
+    public bool IsMove { get; private set; }
     private void FixedUpdate()
     {
         Rotation();
+        _rbMain.velocity = Vector3.zero;
+
         if (IsMove)
         {
-            Vector3 NextPos = _route[_namberPoints];
-            NextPos.y = transform.position.y;
-            transform.position = Vector3.MoveTowards(transform.position, NextPos, _speedMove);
+            _navEnemy.GoToTheGoal(_speedMove);
 
-            if ((transform.position - NextPos).magnitude <= 0.1f)
+            if (_navEnemy.AtTheGoal())
             {
                 if (_enemyShot.IsCanShoot)
                 {
@@ -41,18 +36,8 @@ public class EnemyMove : MonoBehaviour
                 }
                 else
                 {
-                    if (_namberPoints < _route.Length - 1)
-                    {
-                        _enemyShot.AbilityToShoot();
-                        _namberPoints++;
-                    }
-                    else
-                    {
-                        _enemyShot.AbilityToShoot();
-
-                        _namberPoints = 0;
-                        _route = Battlefield.Instens.GetPointsOnBattelefield(_slevelOfComplexityOfBehavior, transform.position, true);
-                    }
+                    _enemyShot.AbilityToShoot();
+                    _navEnemy.NextGoal();
                 }
             }
         }
@@ -88,6 +73,7 @@ public class EnemyMove : MonoBehaviour
     private void StartMoving()
     {
         IsMove = true;
+        _rbMain.velocity = Vector3.zero;
         _rbMain.mass = _movingMass;
     }
     private void Rotation()
@@ -104,9 +90,8 @@ public class EnemyMove : MonoBehaviour
 
         _enemyShot.Activation();
         _positionTarget = target;
-        _slevelOfComplexityOfBehavior = slevelOfComplexityOfBehavior;
 
-        _route = Battlefield.Instens.GetPointsOnBattelefield(_slevelOfComplexityOfBehavior, transform.position, false);
+        _navEnemy.NewRoute(slevelOfComplexityOfBehavior,false);
         StartMoving();
         PoolEnemy.Instance.EnemyReturnToPool += CheckTakeEnemy;
 

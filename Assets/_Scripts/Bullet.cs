@@ -35,6 +35,10 @@ public class Bullet : MonoBehaviour
                 ReturnToPool();
             }
         }
+        if (other.tag== "ImpenetrableWall")
+        {
+            ReturnToPool();
+        }
     }
     public void Initialization(BulletCharacteristics bullet)
     {
