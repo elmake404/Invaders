@@ -32,7 +32,6 @@ public class EnemyMove : MonoBehaviour
             NextPos.y = transform.position.y;
             transform.position = Vector3.MoveTowards(transform.position, NextPos, _speedMove);
 
-
             if ((transform.position - NextPos).magnitude <= 0.1f)
             {
                 if (_enemyShot.IsCanShoot)
@@ -58,29 +57,29 @@ public class EnemyMove : MonoBehaviour
             }
         }
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (_enemyFaced == null)
-    //    {
-    //        _enemyFaced = other.GetComponent<EnemyMove>();
+    private void OnTriggerStay(Collider other)
+    {
+        if (_enemyFaced == null)
+        {
+            _enemyFaced = other.GetComponent<EnemyMove>();
 
-    //    }
-    //    else
-    //    {
-    //        if (_enemyFaced.IsMove)
-    //        {
-    //            StopMovig();
-    //        }
-    //    }
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (_enemyFaced != null && _enemyFaced.gameObject == other.gameObject)
-    //    {
-    //        _enemyFaced = null;
-    //        StartMoving();
-    //    }
-    //}
+        }
+        else
+        {
+            if (_enemyFaced.IsMove)
+            {
+                StopMovig();
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (_enemyFaced != null && _enemyFaced.gameObject == other.gameObject)
+        {
+            _enemyFaced = null;
+            StartMoving();
+        }
+    }
     private void StopMovig()
     {
         IsMove = false;
@@ -103,6 +102,7 @@ public class EnemyMove : MonoBehaviour
     {
         PoolEnemy.Instance.EnemyReturnToPool -= CheckTakeEnemy;
 
+        _enemyShot.Activation();
         _positionTarget = target;
         _slevelOfComplexityOfBehavior = slevelOfComplexityOfBehavior;
 

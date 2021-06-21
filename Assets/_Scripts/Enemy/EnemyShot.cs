@@ -20,7 +20,7 @@ public class EnemyShot : MonoBehaviour
     private MaxMin _numberOfShotsPerRound;
 
     public bool IsCanShoot /*{ get; private set; }*/;
-    public bool IsShoot { get; private set; }
+    public bool IsShoot /*{ get; private set; }*/;
 
     void Start()
     {
@@ -48,6 +48,11 @@ public class EnemyShot : MonoBehaviour
         IsShoot = false;
     }
     public void AbilityToShoot() => IsCanShoot = true;
+    public void Activation()
+    {
+        IsCanShoot = true;
+        IsShoot = false;
+    }
     public void StartShot() => StartCoroutine(Shot());
 
 }
