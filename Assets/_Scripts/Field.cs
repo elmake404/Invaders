@@ -62,10 +62,7 @@ public class Field : MonoBehaviour
 
     //возвращает крайнюю точку по оси апликат и рандомную по оси абсцис
     public Vector3 GetPoint()
-    {
-        Vector3 postiom = new Vector3(Random.Range(_widthNearPoint, _widthFarPoint), 0, _lengthFarPoint);
-        return postiom;
-    }
+        => new Vector3(Random.Range(_widthNearPoint, _widthFarPoint), 0, _lengthFarPoint);
 
     //возвращает рандомные точки по оси апликат и по оси абсцис.  
     //если выставить флаг isOnlyForward=true точка по оси апликат будет меньше чем position
@@ -82,8 +79,7 @@ public class Field : MonoBehaviour
             zMin = _lengthFarPoint;
         }
 
-        Vector3 postiom = new Vector3(Random.Range(_widthNearPoint, _widthFarPoint), 0, Random.Range(_lengthNearPoint, zMin));
-        return postiom;
+        return new Vector3(Random.Range(_widthNearPoint, _widthFarPoint), 0, Random.Range(_lengthNearPoint, zMin));
     }
 
     //возвращает рандомные точки по оси апликат и по оси абсцис, c выставлением максимального шага на одну из сторон.
@@ -139,10 +135,7 @@ public class Field : MonoBehaviour
 
         }
 
-
-
-        Vector3 postiom = new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
-        return postiom;
+        return new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
     }
     //возвращает рандомные точки по оси апликат и по оси абсцис, c выставлением максимального шага на обе стороны.
     // если выставить флаг isOnlyForward=true точка по оси апликат будет меньше чем position
@@ -165,8 +158,7 @@ public class Field : MonoBehaviour
         float ZMax = position.z + maxDistanceZ > Z ? Z : position.z + maxDistanceZ;
         float ZMin = position.z - maxDistanceZ < _lengthNearPoint ? _lengthNearPoint : position.z - maxDistanceZ;
 
-        Vector3 postiom = new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
-        return postiom;
+        return new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
     }
 
     //возвращает рандомные точки по оси апликат и по оси абсцис, c выставлением максимального шага по оси апликат.
@@ -189,14 +181,37 @@ public class Field : MonoBehaviour
 
         ZMax = position.z + maxBeckDistance > _lengthFarPoint ? _lengthFarPoint : position.z + maxBeckDistance;
         ZMin = position.z - maxBeckDistance < Z ? Z : position.z - maxBeckDistance;
-        Vector3 postion;
+        Vector3 Getposition;
         if (!isExactDistance)
-            postion = new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
+            Getposition = new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
         else
-            postion = new Vector3(Random.Range(XMin, XMax), 0, ZMax);
+            Getposition = new Vector3(Random.Range(XMin, XMax), 0, ZMax);
 
-        return postion;
+        return Getposition;
     }
+
+    public Vector3 GetPointOppositeSideAbscissa(Vector3 position,bool IsRight)
+    {
+        if (IsRight)
+        {
+            //Debug.Log("if");
+
+            //Debug.Log(position.x);
+            //Debug.Log(_widthFarPoint);
+            position.x = Random.Range(position.x,_widthFarPoint);
+        }
+        else
+        {
+            //Debug.Log("else");
+            //Debug.Log(position.x);
+            //Debug.Log(_widthNearPoint);
+
+            position.x = Random.Range(_widthNearPoint, position.x);
+
+        }
+        return position;
+    }
+ 
 
     //возвращает рандомные точки по оси апликат и по оси абсцис.
     public Vector3 GetPointBeck(Vector3 position)
@@ -217,8 +232,7 @@ public class Field : MonoBehaviour
         ZMax = _lengthFarPoint;
         ZMin = Z;
 
-        Vector3 postiom = new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
-        return postiom;
+        return new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
     }
 
     private void OnDrawGizmos/*Selected*/()

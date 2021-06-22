@@ -57,17 +57,7 @@ public class LevelConditions : MonoBehaviour
     {
         PoolEnemy.Instance.EnemyReturnToPool += DeathOfTheEnemy;
         _targetEnemy = FindObjectOfType<PlayerLife>().transform;
-        ActivationNextWave();
-        foreach (var item in _disembarkationPoints)
-        {
-            if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy)
-            {
-                ActivationEnemy(item);
-            }
-            else
-                break;
-        }
-
+        GameStageEvent.StartLevel += StartWar;
     }
     private void FixedUpdate()
     {
@@ -111,6 +101,21 @@ public class LevelConditions : MonoBehaviour
             {
                 _attackWaves[i].Name = "Wave " + (i + 1);
             }
+        }
+    }
+    private void StartWar()
+    {
+        GameStageEvent.StartLevel -= StartWar;
+
+        ActivationNextWave();
+        foreach (var item in _disembarkationPoints)
+        {
+            if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy)
+            {
+                ActivationEnemy(item);
+            }
+            else
+                break;
         }
     }
     private void ActivationNextWave()
@@ -200,6 +205,6 @@ public class LevelConditions : MonoBehaviour
             }
         }
     }
-    
+
 }
 

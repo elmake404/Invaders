@@ -27,10 +27,6 @@ public class EnemyShot : MonoBehaviour
         IsCanShoot = true;
     }
 
-    void Update()
-    {
-
-    }
     private IEnumerator Shot()
     {
         IsShoot = true;

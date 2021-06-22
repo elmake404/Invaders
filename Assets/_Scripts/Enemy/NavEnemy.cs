@@ -33,6 +33,18 @@ public class NavEnemy : MonoBehaviour
         }
 
     }
+    public void AbandonmentOfThePoint(Vector3 position) => _route[_namberPoints] = position;
+    public void GoTheOtherWay()
+    {
+        bool right = transform.position.x > _route[_namberPoints].x;
+        _route[_namberPoints] = Battlefield.Instens.GetPointInTheOtherSide(_slevelOfComplexityOfBehavior, _route[_namberPoints], right);
+    }
+    public Vector3 GetDirection()
+    {
+        Vector3 NextPos = _route[_namberPoints];
+        NextPos.y = transform.position.y;
+        return (transform.position - NextPos).normalized;
+    }
     public void NewRoute(LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior, bool reCall)
     {
         _slevelOfComplexityOfBehavior = slevelOfComplexityOfBehavior;

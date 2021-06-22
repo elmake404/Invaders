@@ -12,14 +12,16 @@ public class PlayerShot : MonoBehaviour
     [SerializeField]
     private float _frequencyOfShots;
 
-    void Start()
+    void Awake()
     {
-        
-        StartCoroutine(Shot());
+        GameStageEvent.StartLevel += StartShoot;
     }
 
-    void FixedUpdate()
+    private void StartShoot()
     {
+        GameStageEvent.StartLevel -= StartShoot;
+
+        StartCoroutine(Shot());
     }
     private IEnumerator Shot()
     {

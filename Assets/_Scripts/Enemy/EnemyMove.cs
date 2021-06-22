@@ -7,6 +7,8 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private NavEnemy _navEnemy;
     [SerializeField]
+    private Transform _objTouch;
+    [SerializeField]
     private Rigidbody _rbMain;
     private Transform _positionTarget;
     [SerializeField]
@@ -21,11 +23,10 @@ public class EnemyMove : MonoBehaviour
     private void FixedUpdate()
     {
         Rotation();
-        _rbMain.velocity = Vector3.zero;
 
         if (IsMove)
         {
-            _navEnemy.GoToTheGoal(_speedMove);
+            _rbMain.velocity = Vector3.zero;
 
             if (_navEnemy.AtTheGoal())
             {
@@ -40,6 +41,10 @@ public class EnemyMove : MonoBehaviour
                     _navEnemy.NextGoal();
                 }
             }
+            else
+            {
+                _navEnemy.GoToTheGoal(_speedMove);
+            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -53,6 +58,7 @@ public class EnemyMove : MonoBehaviour
         {
             if (_enemyFaced.IsMove)
             {
+                //_navEnemy.GoTheOtherWay();
                 StopMovig();
             }
         }
@@ -83,6 +89,8 @@ public class EnemyMove : MonoBehaviour
             Quaternion rotationTarget = Quaternion.LookRotation(_positionTarget.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, _spedRotation);
         }
+        if (_navEnemy.GetDirection() != Vector3.zero)
+            _objTouch.forward = _navEnemy.GetDirection() * (-1);
     }
     public void StartWar(Transform target, LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior)
     {
@@ -91,7 +99,7 @@ public class EnemyMove : MonoBehaviour
         _enemyShot.Activation();
         _positionTarget = target;
 
-        _navEnemy.NewRoute(slevelOfComplexityOfBehavior,false);
+        _navEnemy.NewRoute(slevelOfComplexityOfBehavior, false);
         StartMoving();
         PoolEnemy.Instance.EnemyReturnToPool += CheckTakeEnemy;
 
@@ -104,6 +112,4 @@ public class EnemyMove : MonoBehaviour
             StartMoving();
         }
     }
-
-
 }

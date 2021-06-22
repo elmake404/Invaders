@@ -58,17 +58,10 @@ public class Battlefield : MonoBehaviour
         }
         return points;
     }
-    public Vector3[] GetPointsOnBattelefieldAgain(LevelOfComplexityOfBehavior levelOfComplexityOfBehavior, Vector3 position)
+    public Vector3 GetPointInTheOtherSide(LevelOfComplexityOfBehavior levelOfComplexityOfBehavior, Vector3 position, bool IsRight)
     {
-        ComplexityOfBehavior complexity = _dictionaryFieldsComplexity[levelOfComplexityOfBehavior];
-
-        Vector3[] points = new Vector3[complexity.amontOfPoints + 1];
-        Vector3 oldPos = position;
-
-        for (int i = 0; i < points.Length; i++)
-        {
-        }
-        return points;
+        position = _dictionaryFieldsComplexity[levelOfComplexityOfBehavior].Field[0].GetPointOppositeSideAbscissa(position, IsRight);
+        return position;
     }
     private void OnValidate()
     {
