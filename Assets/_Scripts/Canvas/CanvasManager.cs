@@ -9,9 +9,16 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]
     private GameObject _menuUI, _inGameUI, _wimIU, _lostUI;
     [SerializeField]
-    private Image  _levelBar;
+    private GameObject _numberOfCartridges, _infinityCartridges;
     [SerializeField]
-    private Text _textLevelWin, _textLevelCurent, _textLevelTarget;
+    private Image  _levelBar,_healthBar;
+    [SerializeField]
+    private Text _textLevelWin, _textLevelCurent, _textLevelTarget, _textNumberOfCartridges;
+    private void Awake()
+    {
+        FindObjectOfType<PlayerShot>().Shot += ShootingInformation;
+        FindObjectOfType<PlayerLife>().HealthChange += HealthInformation;
+    }
 
     private void Start()
     {
@@ -51,5 +58,23 @@ public class CanvasManager : MonoBehaviour
                 break;
         }
     }
+    public void HealthInformation(float Health)
+    {
+        _healthBar.fillAmount = Health;        
+    }
+    public void ShootingInformation(int numberOfCartridges)
+    {
+        if (numberOfCartridges>0)
+        {
+            _infinityCartridges.SetActive(false);
+            _numberOfCartridges.SetActive(true);
 
+            _textNumberOfCartridges.text = numberOfCartridges.ToString();
+        }
+        else
+        {
+            _infinityCartridges.SetActive(true);
+            _numberOfCartridges.SetActive(false);
+        }
+    }
 }

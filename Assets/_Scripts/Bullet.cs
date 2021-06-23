@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         {
             if (_characteristics.KeyTargets == KeyTargets.All || _characteristics.KeyTargets == heath.GetKeyTarget())
             {
-                heath.Damage(_characteristics.Damage);
+                heath.Damage(-_characteristics.Damage);
                 ReturnToPool();
             }
         }

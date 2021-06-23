@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public static Transform Position { get; private set; }
+
     private Vector3 _startTouchPos, _currentPosPlayer, _targetPosPlayer;
     private Camera _cam;
 
     [SerializeField]
     private float _speed;
+    private void Awake()
+    {
+        Position = transform;
+    }
 
     void Start()
     {

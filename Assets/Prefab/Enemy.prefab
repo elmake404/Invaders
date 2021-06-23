@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1660542526987355174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 691821721825373198}
+  m_Layer: 0
+  m_Name: SpawnPosBonus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &691821721825373198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660542526987355174}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7933685559946052280}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1738498359144529984
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +77,7 @@ GameObject:
   - component: {fileID: 8273552120440685110}
   - component: {fileID: 2425603588935556882}
   - component: {fileID: 1213170625602722253}
+  - component: {fileID: -6886609472424678006}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -67,6 +98,7 @@ Transform:
   m_Children:
   - {fileID: 8630135660176956429}
   - {fileID: 5461866755683105499}
+  - {fileID: 691821721825373198}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tagTarget: 1
   _amountHelths: 5
+  _helth: 0
   _enemyMove: {fileID: 3785649165459517970}
   _enemyId: 1
 --- !u!114 &1213170625602722253
@@ -215,6 +248,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741ad581e5ae7af47a3cff0ced99d01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6886609472424678006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4755353396581620987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094dd23321803e047bc0f65791fbf45e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPos: {fileID: 691821721825373198}
+  _bonusSpawners:
+  - Name: BonusHealth
+    Bonus: {fileID: -6422724361864368402, guid: 6534b5c34bc59764282b36623da49107,
+      type: 3}
+    _probability: 100
+  - Name: BonusWeapon
+    Bonus: {fileID: 4268106631536173230, guid: 8e76f52321ed9f048b7a3167575da776, type: 3}
+    _probability: 100
 --- !u!1 &6730757228148747209
 GameObject:
   m_ObjectHideFlags: 0
