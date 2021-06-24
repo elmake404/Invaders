@@ -125,21 +125,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackWaves:
   - Name: Wave 1
-    _maximNumumberOfLivingEnemy: 5
+    _maximNumumberOfLivingEnemy: 8
     Charatristic:
     - Name: Enemy
       Enemy: {fileID: 2425603588935556882, guid: 69150e940a9e3d54592ebae35ac2a914,
         type: 3}
       Easy: 5
-      Normal: 3
-      Hard: 1
-      Random: 0
-    - Name: Enemy 1
-      Enemy: {fileID: 2425603588935556882, guid: 6c1c74dd90f2223449c8950fc5cc044a,
-        type: 3}
-      Easy: 3
-      Normal: 6
-      Hard: 1
+      Normal: 0
+      Hard: 0
       Random: 0
   - Name: Wave 2
     _maximNumumberOfLivingEnemy: 5
@@ -149,13 +142,6 @@ MonoBehaviour:
         type: 3}
       Easy: 5
       Normal: 3
-      Hard: 1
-      Random: 0
-    - Name: Enemy 1
-      Enemy: {fileID: 2425603588935556882, guid: 6c1c74dd90f2223449c8950fc5cc044a,
-        type: 3}
-      Easy: 3
-      Normal: 6
       Hard: 1
       Random: 0
   _disembarkationPoints:
@@ -216,7 +202,6 @@ MonoBehaviour:
   _levelConditions: {fileID: 3665410733362630114}
   _enemyVariations:
   - {fileID: 2425603588935556882, guid: 69150e940a9e3d54592ebae35ac2a914, type: 3}
-  - {fileID: 2425603588935556882, guid: 6c1c74dd90f2223449c8950fc5cc044a, type: 3}
 --- !u!114 &3665410734155230299
 MonoBehaviour:
   m_ObjectHideFlags: 0

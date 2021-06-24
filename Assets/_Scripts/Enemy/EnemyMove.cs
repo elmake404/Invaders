@@ -20,57 +20,65 @@ public class EnemyMove : MonoBehaviour
     private float _movingMass = 50, _stopingMass = 5;
 
     public bool IsMove { get; private set; }
+    public int Priority { get { return _navEnemy.Priority; } }
     private void FixedUpdate()
     {
         Rotation();
 
-        if (IsMove)
-        {
-            _rbMain.velocity = Vector3.zero;
+        //if (IsMove)
+        //{
+        //_rbMain.velocity = Vector3.zero;
 
-            if (_navEnemy.AtTheGoal())
+        if (_navEnemy.AtTheGoal())
+        {
+            if (_enemyShot.IsCanShoot)
             {
-                if (_enemyShot.IsCanShoot)
-                {
-                    if (!_enemyShot.IsShoot)
-                        _enemyShot.StartShot();
-                }
-                else
-                {
-                    _enemyShot.AbilityToShoot();
-                    _navEnemy.NextGoal();
-                }
+                if (!_enemyShot.IsShoot)
+                    _enemyShot.StartShot();
             }
             else
             {
-                _navEnemy.GoToTheGoal(_speedMove);
+                _enemyShot.AbilityToShoot();
+                _navEnemy.NextGoal();
             }
-        }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (_enemyFaced == null)
-        {
-            _enemyFaced = other.GetComponent<EnemyMove>();
+            _navEnemy.GoToTheGoal(_speedMove);
 
         }
-        else
-        {
-            if (_enemyFaced.IsMove)
-            {
-                //_navEnemy.GoTheOtherWay();
-                StopMovig();
-            }
-        }
+        //}
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (_enemyFaced != null && _enemyFaced.gameObject == other.gameObject)
+        EnemyMove enemyFaced = other.GetComponent<EnemyMove>();
+        if (enemyFaced != null && enemyFaced.Priority == Priority)
         {
-            _enemyFaced = null;
-            StartMoving();
+            Debug.Log(123);
+            _navEnemy.IncreasePrioriti();
         }
     }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (_enemyFaced == null)
+    //    {
+    //        _enemyFaced = other.GetComponent<EnemyMove>();
+
+    //    }
+    //    else
+    //    {
+    //        if (_enemyFaced.IsMove)
+    //        {
+    //            //_navEnemy.GoTheOtherWay();
+    //            StopMovig();
+    //        }
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (_enemyFaced != null && _enemyFaced.gameObject == other.gameObject)
+    //    {
+    //        _enemyFaced = null;
+    //        StartMoving();
+    //    }
+    //}
     private void StopMovig()
     {
         IsMove = false;
@@ -92,6 +100,14 @@ public class EnemyMove : MonoBehaviour
         if (_navEnemy.GetDirection() != Vector3.zero)
             _objTouch.forward = _navEnemy.GetDirection() * (-1);
     }
+    private void CheckTakeEnemy(IEnemuPool enemu)
+    {
+        if (_enemyFaced != null && _enemyFaced.gameObject == enemu.GetObject())
+        {
+            _enemyFaced = null;
+            StartMoving();
+        }
+    }
     public void StartWar(Transform target, LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior)
     {
         PoolEnemy.Instance.EnemyReturnToPool -= CheckTakeEnemy;
@@ -101,15 +117,9 @@ public class EnemyMove : MonoBehaviour
 
         _navEnemy.NewRoute(slevelOfComplexityOfBehavior, false);
         StartMoving();
+        _navEnemy.GoToTheGoal(_speedMove);
+
         PoolEnemy.Instance.EnemyReturnToPool += CheckTakeEnemy;
 
-    }
-    private void CheckTakeEnemy(IEnemuPool enemu)
-    {
-        if (_enemyFaced != null && _enemyFaced.gameObject == enemu.GetObject())
-        {
-            _enemyFaced = null;
-            StartMoving();
-        }
     }
 }

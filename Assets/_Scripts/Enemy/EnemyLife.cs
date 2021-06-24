@@ -19,7 +19,6 @@ public class EnemyLife : HeathMeter, IEnemuPool
         ExposeHealth();
         _enemyMove.StartWar(target,slevelOfComplexityOfBehavior);
     }
-
     public void RetornToPool()
     {        
         PoolEnemy.Instance.ReturnToPool(this);

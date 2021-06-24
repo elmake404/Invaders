@@ -18,15 +18,11 @@ public class PoolEnemy : MonoBehaviour
         Instance = this;
     }
 
-    //void Update()
-    //{
-
-    //}
     public void CreateAPool(EnemyLife example, int quantity)
     {
         _exampleEnemy[example.EnemyID()] = example;
         _pooolEnemy[example.EnemyID()] = new Queue<IEnemuPool>();
-
+        
         for (int i = 0; i < quantity; i++)
         {
             EnemyLife enemy = Instantiate(example, transform);
@@ -36,8 +32,7 @@ public class PoolEnemy : MonoBehaviour
     }
 
     public void ReturnToPool(IEnemuPool enemy)
-    {
-        
+    {        
         if (!_pooolEnemy[enemy.EnemyID()].Contains(enemy))
         {
             EnemyReturnToPool?.Invoke(enemy);
