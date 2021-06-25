@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyLife : HeathMeter, IEnemuPool
 {
-    [SerializeField]
-    private EnemyMove _enemyMove;
+    public delegate void DataTransfer(Transform target, LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior);
+    public event DataTransfer ActivationEnemy;
+
+    //[SerializeField]
+    //private EnemyMove _enemyMove;
     [SerializeField]
     private int _enemyId; 
 
@@ -17,7 +20,8 @@ public class EnemyLife : HeathMeter, IEnemuPool
     public void Activation(Transform target, LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior)
     {
         ExposeHealth();
-        _enemyMove.StartWar(target,slevelOfComplexityOfBehavior);
+        ActivationEnemy?.Invoke(target, slevelOfComplexityOfBehavior);
+        //_enemyMove.StartWar(target,slevelOfComplexityOfBehavior);
     }
     public void RetornToPool()
     {        

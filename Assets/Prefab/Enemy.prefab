@@ -193,10 +193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navEnemy: {fileID: 1213170625602722253}
+  _enemyShot: {fileID: 8273552120440685110}
+  _enemyLife: {fileID: 2425603588935556882}
   _objTouch: {fileID: 8630135660176956429}
   _rbMain: {fileID: 527999690364301525}
-  _enemyShot: {fileID: 8273552120440685110}
-  _speedMove: 5
+  _speedMove: 3
   _spedRotation: 0.3
 --- !u!114 &8273552120440685110
 MonoBehaviour:
@@ -235,7 +236,6 @@ MonoBehaviour:
   _tagTarget: 1
   _amountHelths: 5
   _helth: 0
-  _enemyMove: {fileID: 3785649165459517970}
   _enemyId: 1
 --- !u!114 &1213170625602722253
 MonoBehaviour:

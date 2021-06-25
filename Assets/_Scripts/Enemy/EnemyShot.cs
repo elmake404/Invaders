@@ -15,18 +15,28 @@ public class EnemyShot : MonoBehaviour
     [SerializeField]
     private BulletCharacteristics _bulletCharacteristics;
     [SerializeField]
-    private float _frequencyOfShots;
+    private float _frequencyOfShots,_pausesBetweenShooting;
     [SerializeField]
     private MaxMin _numberOfShotsPerRound;
 
-    public bool IsCanShoot { get; private set; }
-    public bool IsShoot { get; private set; }
+    [SerializeField]
+    private bool _isAutomaticShooting;
+    public bool IsCanShoot
+    { get; private set; }
+    public bool IsShoot
+    { get; private set; }
 
     void Start()
     {
         IsCanShoot = true;
     }
-
+    private void OnEnable()
+    {
+        if (_isAutomaticShooting)
+        {
+            StartCoroutine(AutomaticShooting());
+        }
+    }
     private IEnumerator Shot()
     {
         IsShoot = true;
@@ -43,12 +53,34 @@ public class EnemyShot : MonoBehaviour
 
         IsShoot = false;
     }
+    private IEnumerator AutomaticShooting()
+    {
+        while (true)
+        {
+            int numberOfShots = Random.Range(_numberOfShotsPerRound.Min, _numberOfShotsPerRound.Max);
+
+            while (numberOfShots > 0)
+            {
+                yield return new WaitForSeconds(_frequencyOfShots);
+                Bullet bullet = PoolBullet.Instance.GetBullet(_shotPos.position, _shotPos.rotation);
+
+                bullet.Initialization(_bulletCharacteristics);
+                numberOfShots--;
+            }
+
+            yield return new WaitForSeconds(_pausesBetweenShooting);
+        }
+
+    }
     public void AbilityToShoot() => IsCanShoot = true;
     public void Activation()
     {
         IsCanShoot = true;
         IsShoot = false;
     }
-    public void StartShot() => StartCoroutine(Shot());
+    public void StartShot()
+    {
+        if (!_isAutomaticShooting) StartCoroutine(Shot());
+    }
 
 }

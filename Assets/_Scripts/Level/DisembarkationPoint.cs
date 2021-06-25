@@ -13,9 +13,9 @@ public class DisembarkationPoint : MonoBehaviour
         RaycastHit[] raycastHit = Physics.SphereCastAll(transform.position, _radus, transform.up, 0.1f, _layerMask);
         if (raycastHit.Length > 0)
         {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
     private void OnDrawGizmos()
     {

@@ -53,42 +53,48 @@ public class LevelConditions : MonoBehaviour
 
     private bool _isWaveIsOver { get { return (_numberOfEnemiesInWave <= 0 && _enemiesInGame.Count <= 0); } }
     private int _numberOfEnemiesInWave, _numberWave;
+    private void Awake()
+    {
+        GameStageEvent.StartLevel += StartWar;
+    }
     private void Start()
     {
         PoolEnemy.Instance.EnemyReturnToPool += DeathOfTheEnemy;
         _targetEnemy = FindObjectOfType<PlayerLife>().transform;
-        GameStageEvent.StartLevel += StartWar;
     }
     private void FixedUpdate()
     {
-        if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy)
+        if (GameStage.IsGameFlowe)
         {
-            List<DisembarkationPoint> points = new List<DisembarkationPoint>();
-            points.AddRange(_disembarkationPoints);
-            while (true)
+            if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy)
             {
-                DisembarkationPoint disembarkationPoint = points[Random.Range(0, points.Count)];
-                if (disembarkationPoint.CheckFree())
+                List<DisembarkationPoint> points = new List<DisembarkationPoint>();
+                points.AddRange(_disembarkationPoints);
+                while (true)
                 {
+                    DisembarkationPoint disembarkationPoint = points[Random.Range(0, points.Count)];
+                    if (disembarkationPoint.CheckFree())
+                    {
+                        ActivationEnemy(disembarkationPoint);
+                        break;
+                    }
+                    else
+                    {
 
-                    ActivationEnemy(disembarkationPoint);
-                    break;
+                        points.Remove(disembarkationPoint);
+                    }
+                    if (points.Count <= 0) break;
                 }
-                else
-                {
 
-                    points.Remove(disembarkationPoint);
-                }
-                if (points.Count <= 0) break;
             }
 
-        }
-        if (_isWaveIsOver)
-        {
-            if (_numberWave < _attackWaves.Length - 1)
+            if (_isWaveIsOver)
             {
-                _numberWave++;
-                ActivationNextWave();
+                if (_numberWave < _attackWaves.Length - 1)
+                {
+                    _numberWave++;
+                    ActivationNextWave();
+                }
             }
         }
 

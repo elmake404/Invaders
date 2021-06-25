@@ -34,7 +34,6 @@ public class NavEnemy : MonoBehaviour
         NextPos.y = transform.position.y;
         _agent.SetDestination(NextPos);
         _agent.speed = speed;
-        //transform.position = Vector3.MoveTowards(transform.position, NextPos, speed);
     }
     public bool AtTheGoal()
     {

@@ -46,4 +46,4 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 512
-  _radus: 1.5
+  _radus: 1
