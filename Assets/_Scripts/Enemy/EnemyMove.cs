@@ -27,6 +27,7 @@ public class EnemyMove : MonoBehaviour
     private void FixedUpdate()
     {
         Rotation();
+        Debug.Log(_objTouch.localEulerAngles.y);
 
         if (_navEnemy.AtTheGoal())
         {
@@ -60,7 +61,7 @@ public class EnemyMove : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, _spedRotation);
         }
         if (_navEnemy.GetDirection() != Vector3.zero)
-            _objTouch.forward = _navEnemy.GetDirection() * (-1);
+            _objTouch.forward = _navEnemy.GetDirection();
     }
     private void StartWar(Transform target, LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior)
     {

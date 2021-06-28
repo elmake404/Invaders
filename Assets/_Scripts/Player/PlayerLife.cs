@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerLife : HeathMeter
 {
-    public delegate float PassTheNumber();
-    public event PassTheNumber GetHealth;
+    public delegate float PassTheHealth();
+    public event PassTheHealth GetHealth;
 
     private void Awake()
     {

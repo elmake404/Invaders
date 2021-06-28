@@ -14,7 +14,6 @@ public class HeathMeter : MonoBehaviour
     private KeyTargets _tagTarget;
     [SerializeField]
     private float _amountHelths;
-    [SerializeField]
     private float _helth;
     protected void ExposeHealth() => _helth = _amountHelths;
     public void Damage(float loss)

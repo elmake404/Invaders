@@ -680,7 +680,7 @@ PrefabInstance:
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.data[0]._maximNumumberOfLivingEnemy
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
