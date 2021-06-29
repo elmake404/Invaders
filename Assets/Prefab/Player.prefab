@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
+  _animator: {fileID: 2147633918179611817}
 --- !u!114 &1129909790735140872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tagTarget: 0
   _amountHelths: 1000
-  _helth: 0
 --- !u!54 &5883491058362500445
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f297797635a2b7445ad2ea55cec7353b, type: 2}
+      objectReference: {fileID: 9100000, guid: 61b96ae058e131343aacf45bf678d3eb, type: 2}
     - target: {fileID: 7938814568200554254, guid: 22ceaf89f3cdfd548a9bfd63b221d4f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -369,6 +369,12 @@ PrefabInstance:
 --- !u!4 &4597385980377772185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7938814568200554254, guid: 22ceaf89f3cdfd548a9bfd63b221d4f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5900111306724046743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2147633918179611817 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5488914133537547070, guid: 22ceaf89f3cdfd548a9bfd63b221d4f7,
     type: 3}
   m_PrefabInstance: {fileID: 5900111306724046743}
   m_PrefabAsset: {fileID: 0}

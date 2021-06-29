@@ -11,6 +11,8 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private float _speed;
+    [SerializeField]
+    private Animator _animator;
     private void Awake()
     {
         Position = transform;
@@ -64,8 +66,25 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 PosX = transform.position;
         PosX.x = _targetPosPlayer.x;
+        _animator.SetInteger("Strafe", GetDirectionMove());
+
         transform.position = Vector3.MoveTowards(transform.position, PosX, _speed);
     }
 
-
+    private int GetDirectionMove()
+    {
+        if (_targetPosPlayer.x - transform.position.x == 0)
+        {
+            return 0;
+        }
+        else if (_targetPosPlayer.x > transform.position.x)
+        {
+            return 1;
+        }
+        else if (_targetPosPlayer.x < transform.position.x)
+        {
+            return -1;
+        }
+        else return 0;
+    }
 }
