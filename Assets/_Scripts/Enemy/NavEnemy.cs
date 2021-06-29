@@ -35,11 +35,11 @@ public class NavEnemy : MonoBehaviour
         _agent.SetDestination(NextPos);
         _agent.speed = speed;
     }
-    public bool AtTheGoal()
+    public float GetDistens()
     {
         Vector3 NextPos = _route[_namberPoints];
         NextPos.y = transform.position.y;
-        return (transform.position - NextPos).magnitude <= 0.1f;
+        return (transform.position - NextPos).magnitude;
     }
     public void NextGoal()
     {
@@ -65,7 +65,6 @@ public class NavEnemy : MonoBehaviour
         return (transform.position - NextPos).normalized;
     }
     public void IncreasePrioriti() => Priority++;
-    
     public void NewRoute(LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior, bool reCall)
     {
         _slevelOfComplexityOfBehavior = slevelOfComplexityOfBehavior;

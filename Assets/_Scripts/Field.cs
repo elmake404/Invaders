@@ -235,10 +235,10 @@ public class Field : MonoBehaviour
         return new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
     }
 
-    private void OnDrawGizmos/*Selected*/()
-    {
-            Gizmos.color = _color;
+    //private void OnDrawGizmos/*Selected*/()
+    //{
+    //        Gizmos.color = _color;
 
-            Gizmos.DrawCube(_center, new Vector3(_width * 2, 0.0001f, _length * 2));
-    }
+    //        Gizmos.DrawCube(_center, new Vector3(_width * 2, 0.0001f, _length * 2));
+    //}
     }

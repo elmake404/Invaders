@@ -13,9 +13,11 @@ public class EnemyShot : MonoBehaviour
     private Transform _shotPos;
 
     [SerializeField]
+    private Animator _animator;
+    [SerializeField]
     private BulletCharacteristics _bulletCharacteristics;
     [SerializeField]
-    private float _frequencyOfShots,_pausesBetweenShooting;
+    private float _frequencyOfShots, _pausesBetweenShooting;
     [SerializeField]
     private MaxMin _numberOfShotsPerRound;
 
@@ -43,11 +45,15 @@ public class EnemyShot : MonoBehaviour
         int numberOfShots = Random.Range(_numberOfShotsPerRound.Min, _numberOfShotsPerRound.Max);
         while (numberOfShots > 0)
         {
-            yield return new WaitForSeconds(_frequencyOfShots);
-            Bullet bullet = PoolBullet.Instance.GetBullet(_shotPos.position, _shotPos.rotation);
+            yield return new WaitForSeconds(_frequencyOfShots - 0.02f);
+            _animator.SetBool("Shot", true);
 
-            bullet.Initialization(_bulletCharacteristics);
+            CreateBullet();
             numberOfShots--;
+
+            yield return new WaitForSeconds(0.02f);
+
+            _animator.SetBool("Shot", false);
         }
         IsCanShoot = false;
 
@@ -61,16 +67,27 @@ public class EnemyShot : MonoBehaviour
 
             while (numberOfShots > 0)
             {
-                yield return new WaitForSeconds(_frequencyOfShots);
-                Bullet bullet = PoolBullet.Instance.GetBullet(_shotPos.position, _shotPos.rotation);
+                yield return new WaitForSeconds(_frequencyOfShots - 0.02f);
+                _animator.SetBool("Shot", true);
 
-                bullet.Initialization(_bulletCharacteristics);
+                CreateBullet();
                 numberOfShots--;
+
+                yield return new WaitForSeconds(0.02f);
+
+                _animator.SetBool("Shot", false);
+
             }
 
             yield return new WaitForSeconds(_pausesBetweenShooting);
         }
 
+    }
+    private void CreateBullet()
+    {
+        Bullet bullet = PoolBullet.Instance.GetBullet(_shotPos.position, _shotPos.rotation);
+
+        bullet.Initialization(_bulletCharacteristics);
     }
     public void AbilityToShoot() => IsCanShoot = true;
     public void Activation()

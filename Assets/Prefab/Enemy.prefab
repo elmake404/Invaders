@@ -149,6 +149,7 @@ MonoBehaviour:
   _enemyLife: {fileID: 2425603588935556882}
   _objTouch: {fileID: 8630135660176956429}
   _rbMain: {fileID: 527999690364301525}
+  _animator: {fileID: 7785310742177619590}
   _speedMove: 3
   _spedRotation: 0.3
 --- !u!114 &8273552120440685110
@@ -164,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPos: {fileID: 5461866755683105499}
+  _animator: {fileID: 7785310742177619590}
   _bulletCharacteristics:
     KeyTargets: 0
     FlightSpeed: 0.3
@@ -189,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tagTarget: 1
   _amountHelths: 5
-  _helth: 0
+  _animator: {fileID: 7785310742177619590}
   _enemyId: 1
 --- !u!114 &1213170625602722253
 MonoBehaviour:
@@ -358,11 +360,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7898212327502062959, guid: f7ec7572286624a49a3bb8d574d82014,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 970ecec28debabb4d862e87983aa65af, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ec7572286624a49a3bb8d574d82014, type: 3}
 --- !u!4 &5782005966034497951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5884836192082741878, guid: f7ec7572286624a49a3bb8d574d82014,
+    type: 3}
+  m_PrefabInstance: {fileID: 114538998673226729}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7785310742177619590 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7898212327502062959, guid: f7ec7572286624a49a3bb8d574d82014,
     type: 3}
   m_PrefabInstance: {fileID: 114538998673226729}
   m_PrefabAsset: {fileID: 0}
