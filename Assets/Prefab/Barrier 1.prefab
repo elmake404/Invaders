@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33741581010036090}
   - component: {fileID: 23682512590332344}
   - component: {fileID: 95700859093380478}
+  - component: {fileID: 7726559693609504367}
   m_Layer: 0
   m_Name: Barrier 1
   m_TagString: Untagged
@@ -99,3 +100,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7726559693609504367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889507459565908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8661d456d0650428d1ec0475109343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tagTarget: 0
+  _amountHelths: 0

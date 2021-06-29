@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPos: {fileID: 5461866755683105499}
+  _animator: {fileID: 4262334027557002182}
   _bulletCharacteristics:
     KeyTargets: 0
     FlightSpeed: 0.1
@@ -217,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tagTarget: 1
   _amountHelths: 5
+  _animator: {fileID: 4262334027557002182}
   _enemyId: 2
 --- !u!114 &-3089054163029287228
 MonoBehaviour:
@@ -355,6 +357,12 @@ PrefabInstance:
 --- !u!4 &4262334027547980872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400110, guid: b3d134d0c51893a4bac7b458d2427163,
+    type: 3}
+  m_PrefabInstance: {fileID: 4262334027547586214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4262334027557002182 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: b3d134d0c51893a4bac7b458d2427163,
     type: 3}
   m_PrefabInstance: {fileID: 4262334027547586214}
   m_PrefabAsset: {fileID: 0}

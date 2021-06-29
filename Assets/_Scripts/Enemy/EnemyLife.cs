@@ -14,7 +14,6 @@ public class EnemyLife : HeathMeter, IEnemuPool
     private int _enemyId; 
 
 
-
     private void Awake()
     {
         Died += RetornToPool;
@@ -25,19 +24,9 @@ public class EnemyLife : HeathMeter, IEnemuPool
         ExposeHealth();
         ActivationEnemy?.Invoke(target, slevelOfComplexityOfBehavior);
     }
-    private IEnumerator Die()
-    {
-        _animator.SetBool("Death", true);
-        yield return new WaitForSeconds(0.02f);
-        _animator.SetBool("Death", false);
-        yield return new WaitForSeconds(1.717f);
-
-        PoolEnemy.Instance.ReturnToPool(this);
-
-    }
     public void RetornToPool()
     {
-        StartCoroutine(Die());
+        PoolEnemy.Instance.ReturnToPool(this);
     }
 
     public int EnemyID() => _enemyId;
