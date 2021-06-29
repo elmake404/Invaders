@@ -174,7 +174,7 @@ MonoBehaviour:
   _numberOfShotsPerRound:
     Max: 5
     Min: 3
-  _isAutomaticShooting: 0
+  _isAutomaticShooting: 1
 --- !u!114 &2425603588935556882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tagTarget: 1
   _amountHelths: 5
-  _helth: 0
   _enemyId: 1
 --- !u!114 &1213170625602722253
 MonoBehaviour:
