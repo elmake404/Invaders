@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 23682512590332344}
   - component: {fileID: 95700859093380478}
   - component: {fileID: 7726559693609504367}
+  - component: {fileID: 7651648832369399764}
   m_Layer: 0
   m_Name: Barrier 1
-  m_TagString: Untagged
+  m_TagString: ImpenetrableWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,4 +114,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tagTarget: 0
-  _amountHelths: 0
+  _amountHelths: 10
+--- !u!65 &7651648832369399764
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889507459565908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 0.625}
+  m_Center: {x: 0, y: 0.5, z: 0.0625}
