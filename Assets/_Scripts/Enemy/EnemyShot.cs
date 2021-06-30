@@ -92,6 +92,8 @@ public class EnemyShot : MonoBehaviour
     public void AbilityToShoot() => IsCanShoot = true;
     public void Activation()
     {
+        _animator.SetBool("Shot", false);
+
         IsCanShoot = true;
         IsShoot = false;
     }

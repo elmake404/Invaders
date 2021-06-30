@@ -98,7 +98,7 @@ Transform:
   - {fileID: 8630135660176956429}
   - {fileID: 5461866755683105499}
   - {fileID: 691821721825373198}
-  - {fileID: 5782005966034497951}
+  - {fileID: 5952462623555078844}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   _enemyLife: {fileID: 2425603588935556882}
   _objTouch: {fileID: 8630135660176956429}
   _rbMain: {fileID: 527999690364301525}
-  _animator: {fileID: 7785310742177619590}
+  _animator: {fileID: 7974837149220545957}
   _speedMove: 3
   _spedRotation: 0.3
 --- !u!114 &8273552120440685110
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPos: {fileID: 5461866755683105499}
-  _animator: {fileID: 7785310742177619590}
+  _animator: {fileID: 7974837149220545957}
   _bulletCharacteristics:
     KeyTargets: 0
     FlightSpeed: 0.3
@@ -191,7 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tagTarget: 1
   _amountHelths: 5
-  _animator: {fileID: 7785310742177619590}
+  _dummyDeath: {fileID: -862335019213030293, guid: 1c9be665fee38534b8e81ac53b91ffb8,
+    type: 3}
+  _model: {fileID: 5952462623555078844}
   _enemyId: 1
 --- !u!114 &1213170625602722253
 MonoBehaviour:
@@ -293,7 +295,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 1, z: 2.036539}
   m_Center: {x: 0, y: 0, z: -0.98}
---- !u!1001 &114538998673226729
+--- !u!1001 &229760965866815690
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -303,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 5884836192082712084, guid: f7ec7572286624a49a3bb8d574d82014,
         type: 3}
       propertyPath: m_Name
-      value: Zombie1_WithItemAnimators
+      value: Zombie1_WithItemAnimators (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5884836192082741878, guid: f7ec7572286624a49a3bb8d574d82014,
         type: 3}
@@ -367,15 +369,15 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 970ecec28debabb4d862e87983aa65af, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ec7572286624a49a3bb8d574d82014, type: 3}
---- !u!4 &5782005966034497951 stripped
+--- !u!4 &5952462623555078844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5884836192082741878, guid: f7ec7572286624a49a3bb8d574d82014,
     type: 3}
-  m_PrefabInstance: {fileID: 114538998673226729}
+  m_PrefabInstance: {fileID: 229760965866815690}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &7785310742177619590 stripped
+--- !u!95 &7974837149220545957 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7898212327502062959, guid: f7ec7572286624a49a3bb8d574d82014,
     type: 3}
-  m_PrefabInstance: {fileID: 114538998673226729}
+  m_PrefabInstance: {fileID: 229760965866815690}
   m_PrefabAsset: {fileID: 0}

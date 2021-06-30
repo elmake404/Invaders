@@ -8,7 +8,9 @@ public class EnemyLife : HeathMeter, IEnemuPool
     public event DataTransfer ActivationEnemy;
 
     [SerializeField]
-    private Animator _animator;
+    private DummyDeath _dummyDeath;
+    [SerializeField]
+    private Transform _model;
 
     [SerializeField]
     private int _enemyId; 
@@ -20,12 +22,12 @@ public class EnemyLife : HeathMeter, IEnemuPool
     }
     public void Activation(Transform target, LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior)
     {
-        _animator.SetBool("Shot", false);
         ExposeHealth();
         ActivationEnemy?.Invoke(target, slevelOfComplexityOfBehavior);
     }
     public void RetornToPool()
     {
+        PoolMenedger.GetObject(_dummyDeath.name, _model.position, _model.rotation);
         PoolEnemy.Instance.ReturnToPool(this);
     }
 
