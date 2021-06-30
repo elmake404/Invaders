@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7651648832369399764}
   m_Layer: 0
   m_Name: Barrier 1
-  m_TagString: ImpenetrableWall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

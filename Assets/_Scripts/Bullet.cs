@@ -54,6 +54,7 @@ public class Bullet : MonoBehaviour
     private  void ReturnToPool()
     {
         PoolBullet.Instance.ReturnToPool(this);
+        Debug.Log(_destroy);
         StopCoroutine(_destroy);
         _destroy = null;
     }

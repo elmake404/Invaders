@@ -25,6 +25,7 @@ public class Field : MonoBehaviour
     { get { return _center.z + _length; } }
     private float _lengthNearPoint
     { get { return _center.z - _length; } }
+    private bool _drawArea;
 
     //[SerializeField]
     //private bool _enableDisplayOfTheField;
@@ -44,6 +45,8 @@ public class Field : MonoBehaviour
             return true;
         }
     }
+    [ContextMenu("Toggle the drawer switch")]
+    private void DrawSwitch() => _drawArea = !_drawArea;
     private bool PositionCheckApplicate(Vector3 position)
     {
         if (_lengthFarPoint < position.z)
@@ -190,7 +193,7 @@ public class Field : MonoBehaviour
         return Getposition;
     }
 
-    public Vector3 GetPointOppositeSideAbscissa(Vector3 position,bool IsRight)
+    public Vector3 GetPointOppositeSideAbscissa(Vector3 position, bool IsRight)
     {
         if (IsRight)
         {
@@ -198,7 +201,7 @@ public class Field : MonoBehaviour
 
             //Debug.Log(position.x);
             //Debug.Log(_widthFarPoint);
-            position.x = Random.Range(position.x,_widthFarPoint);
+            position.x = Random.Range(position.x, _widthFarPoint);
         }
         else
         {
@@ -211,7 +214,7 @@ public class Field : MonoBehaviour
         }
         return position;
     }
- 
+
 
     //возвращает рандомные точки по оси апликат и по оси абсцис.
     public Vector3 GetPointBeck(Vector3 position)
@@ -235,10 +238,13 @@ public class Field : MonoBehaviour
         return new Vector3(Random.Range(XMin, XMax), 0, Random.Range(ZMin, ZMax));
     }
 
-    //private void OnDrawGizmos/*Selected*/()
-    //{
-    //        Gizmos.color = _color;
+    private void OnDrawGizmos/*Selected*/()
+    {
+        if (_drawArea)
+        {
+            Gizmos.color = _color;
 
-    //        Gizmos.DrawCube(_center, new Vector3(_width * 2, 0.0001f, _length * 2));
-    //}
+            Gizmos.DrawCube(_center, new Vector3(_width * 2, 0.0001f, _length * 2));
+        }
     }
+}

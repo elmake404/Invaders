@@ -17021,7 +17021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1889507459565908, guid: 8d532d184ddc12a42b1b4b7b2f96dc83, type: 3}
       propertyPath: m_TagString
-      value: ImpenetrableWall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4683689459357820, guid: 8d532d184ddc12a42b1b4b7b2f96dc83, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51949,7 +51949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1889507459565908, guid: 8d532d184ddc12a42b1b4b7b2f96dc83, type: 3}
       propertyPath: m_TagString
-      value: ImpenetrableWall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4683689459357820, guid: 8d532d184ddc12a42b1b4b7b2f96dc83, type: 3}
       propertyPath: m_LocalPosition.x
