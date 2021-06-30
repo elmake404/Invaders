@@ -12,6 +12,6 @@ public class BonusWeapon : MonoBehaviour
     {
         bulletCharacteristics = _additionalBulletCharacteristics;
         numberOfCaridges = _numberOfCartridges;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

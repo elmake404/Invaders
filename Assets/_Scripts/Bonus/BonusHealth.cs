@@ -8,7 +8,7 @@ public class BonusHealth : MonoBehaviour
     private int _addHealth;
     public float GetHelath()
     {
-        Destroy(gameObject);
+       gameObject.SetActive(false);
         return _addHealth;
     }
 }

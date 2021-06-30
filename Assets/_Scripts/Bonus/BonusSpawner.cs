@@ -53,7 +53,8 @@ public class BonusSpawner : MonoBehaviour
         BonusCharacteristics bonus = _bonusSpawners[Random.Range(0, _bonusSpawners.Length)];
         if (bonus.ProbabilityCheck())
         {
-           BonusMove bonusMove =  Instantiate(bonus.Bonus, _spawnPos.position, bonus.Bonus.transform.rotation);
+            BonusMove bonusMove = PoolMenedger.GetObject(bonus.Bonus.name, _spawnPos.position, bonus.Bonus.transform.rotation).GetComponent<BonusMove>();
+            //Instantiate(bonus.Bonus, _spawnPos.position, bonus.Bonus.transform.rotation);
             bonusMove.SetPositionAlongTheApplicateAxis(PlayerMove.Position.position.z);
         }
     }

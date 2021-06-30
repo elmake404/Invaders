@@ -54,6 +54,16 @@ MonoBehaviour:
       type: 3}
     count: 15
     ferul: {fileID: 0}
+  - name: BonusHealth
+    prefab: {fileID: -8015411910185754592, guid: 6534b5c34bc59764282b36623da49107,
+      type: 3}
+    count: 15
+    ferul: {fileID: 0}
+  - name: BonusWeapon
+    prefab: {fileID: 7375526828317832443, guid: 8e76f52321ed9f048b7a3167575da776,
+      type: 3}
+    count: 15
+    ferul: {fileID: 0}
 --- !u!1 &3665410732559641499
 GameObject:
   m_ObjectHideFlags: 0
