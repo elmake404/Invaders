@@ -72,9 +72,11 @@ public class LevelConditions : MonoBehaviour
                 points.AddRange(_disembarkationPoints);
                 while (true)
                 {
+
                     DisembarkationPoint disembarkationPoint = points[Random.Range(0, points.Count)];
                     if (disembarkationPoint.CheckFree())
                     {
+                        disembarkationPoint.SpawnEffect();
                         ActivationEnemy(disembarkationPoint);
                         break;
                     }

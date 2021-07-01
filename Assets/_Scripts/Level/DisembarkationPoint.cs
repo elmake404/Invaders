@@ -8,6 +8,8 @@ public class DisembarkationPoint : MonoBehaviour
     private LayerMask _layerMask;
     [SerializeField]
     private float _radus;
+    [SerializeField]
+    private ParticleSystem _FBXSpawn;
     public bool CheckFree()
     {
         RaycastHit[] raycastHit = Physics.SphereCastAll(transform.position, _radus, transform.up, 0.1f, _layerMask);
@@ -17,6 +19,7 @@ public class DisembarkationPoint : MonoBehaviour
         }
         return true;
     }
+    public void SpawnEffect() => _FBXSpawn.Play();
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

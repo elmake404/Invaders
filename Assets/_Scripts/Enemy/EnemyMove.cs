@@ -28,28 +28,28 @@ public class EnemyMove : MonoBehaviour
     public int Priority { get { return _navEnemy.Priority; } }
     private void FixedUpdate()
     {
-        Rotation();
-
-        if (_navEnemy.GetDistens() <= 0.07f)
+        if (_enemyLife.IsRevived)
         {
-            if (_enemyShot.IsCanShoot)
+            Rotation();
+
+            if (_navEnemy.GetDistens() <= 0.07f)
             {
-                if (!_enemyShot.IsShoot)
-                    _enemyShot.StartShot();
-            }
-            else
-            {
-                _enemyShot.AbilityToShoot();
-                _navEnemy.NextGoal();
+                if (_enemyShot.IsCanShoot)
+                {
+                    if (!_enemyShot.IsShoot)
+                        _enemyShot.StartShot();
+                }
+                else
+                {
+                    _enemyShot.AbilityToShoot();
+                    _navEnemy.NextGoal();
+                }
+
+                _navEnemy.GoToTheGoal(_speedMove);
             }
 
-            _navEnemy.GoToTheGoal(_speedMove);
+            _animator.SetInteger("Side", GetRotation());
         }
-
-        _animator.SetInteger("Side", GetRotation());
-
-
-        _animator.SetFloat("Distense", _navEnemy.GetDistens());
     }
     private void OnTriggerEnter(Collider other)
     {
