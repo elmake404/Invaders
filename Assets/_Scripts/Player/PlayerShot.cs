@@ -8,10 +8,13 @@ public class PlayerShot : MonoBehaviour
     public event GettingAnInteger Shot;
 
     [SerializeField]
+    private Animator _animator;
+    [SerializeField]
     private Transform _shotPos;
     [SerializeField]
     private BulletCharacteristics _bulletCharacteristics;
     private BulletCharacteristics _additionalBulletCharacteristics;
+
     private int _numberOfCartridges;
 
     [SerializeField]
@@ -24,12 +27,12 @@ public class PlayerShot : MonoBehaviour
     private void StartShooting()
     {
         GameStageEvent.StartLevel -= StartShooting;
-
+        _animator.SetBool("StartShooting",true);
         StartCoroutine(Shooting());
     }
     private IEnumerator Shooting()
     {
-        while (true)
+        while (GameStage.IsGameFlowe)
         {
             yield return new WaitForSeconds(_frequencyOfShots);
             Bullet bullet = PoolBullet.Instance.GetBullet(_shotPos.position, _shotPos.rotation);

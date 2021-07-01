@@ -8,11 +8,17 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 _startTouchPos, _currentPosPlayer, _targetPosPlayer;
     private Camera _cam;
-
-    [SerializeField]
-    private float _speed;
+    private Vector3 _startPos;
     [SerializeField]
     private Animator _animator;
+
+    [SerializeField]
+    private float _speed, _Offset;
+    private float _widthFarPoint
+    { get { return _startPos.x + _Offset; } }
+    private float _widthNearPoint
+    { get { return _startPos.x - _Offset; } }
+
     private void Awake()
     {
         Position = transform;
@@ -65,12 +71,11 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 PosX = transform.position;
-        PosX.x = _targetPosPlayer.x;
+        PosX.x = GetPositionAbscissa(_targetPosPlayer.x);
         _animator.SetInteger("Strafe", GetDirectionMove());
 
         transform.position = Vector3.MoveTowards(transform.position, PosX, _speed);
     }
-
     private int GetDirectionMove()
     {
         if (_targetPosPlayer.x - transform.position.x == 0)
@@ -86,5 +91,29 @@ public class PlayerMove : MonoBehaviour
             return -1;
         }
         else return 0;
+    }
+    private float GetPositionAbscissa(float X)
+    {
+        if (_widthFarPoint < X)
+        {
+            return _widthFarPoint;
+        }
+        else if (_widthNearPoint > X)
+        {
+            return _widthNearPoint;
+        }
+        else
+        {
+            return X;
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Vector3 from = transform.position;
+        Vector3 to = transform.position;
+        from.x = transform.position.x - _Offset;
+        to.x = transform.position.x + _Offset;
+        Gizmos.DrawLine(from, to);
     }
 }

@@ -11,23 +11,26 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]
     private GameObject _numberOfCartridges, _infinityCartridges;
     [SerializeField]
-    private Image  _levelBar,_healthBar;
+    private Image _levelBar, _healthBar;
     [SerializeField]
     private Text _textLevelWin, _textLevelCurent, _textLevelTarget, _textNumberOfCartridges;
+    private LevelConditions _levelConditions;
     private void Awake()
     {
         FindObjectOfType<PlayerShot>().Shot += ShootingInformation;
         FindObjectOfType<PlayerLife>().HealthChange += HealthInformation;
+        _levelConditions = FindObjectOfType<LevelConditions>();
     }
 
     private void Start()
     {
-        _textLevelWin.text ="Level "+ PlayerPrefs.GetInt("Level").ToString();
+        _textLevelWin.text = "Level " + PlayerPrefs.GetInt("Level").ToString();
         _textLevelCurent.text = PlayerPrefs.GetInt("Level").ToString();
-        _textLevelTarget.text = (PlayerPrefs.GetInt("Level") +1).ToString();
+        _textLevelTarget.text = (PlayerPrefs.GetInt("Level") + 1).ToString();
     }
     private void FixedUpdate()
     {
+        _levelBar.fillAmount = Mathf.Lerp(_levelBar.fillAmount,_levelConditions.PorocentOfTheKilled,0.3f);
     }
     public void GameStageWindow(Stage stageGame)
     {
@@ -54,17 +57,18 @@ public class CanvasManager : MonoBehaviour
 
             case Stage.LostGame:
 
+                _inGameUI.SetActive(false);
                 _lostUI.SetActive(true);
                 break;
         }
     }
     public void HealthInformation(float Health)
     {
-        _healthBar.fillAmount = Health;        
+        _healthBar.fillAmount = Health;
     }
     public void ShootingInformation(int numberOfCartridges)
     {
-        if (numberOfCartridges>0)
+        if (numberOfCartridges > 0)
         {
             _infinityCartridges.SetActive(false);
             _numberOfCartridges.SetActive(true);

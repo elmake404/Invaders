@@ -15,7 +15,6 @@ public struct BulletCharacteristics
 
 public class Bullet : MonoBehaviour 
 {
-    [SerializeField]
     private BulletCharacteristics _characteristics;
     [SerializeField]
     private ParticleSystem _particle;
@@ -32,6 +31,13 @@ public class Bullet : MonoBehaviour
         {
             if (_characteristics.KeyTargets == KeyTargets.All || _characteristics.KeyTargets == heath.GetKeyTarget())
             {
+                if(other.gameObject.layer==9)
+                {
+                    Vector3 eulerRotation = transform.eulerAngles;
+                    eulerRotation.y *= (-1);
+                    Quaternion rotation = Quaternion.Euler(eulerRotation);
+                    PoolMenedger.GetObject(_particle.name,transform.position,rotation);
+                }
                 heath.Damage(-_characteristics.Damage);
                 ReturnToPool();
             }

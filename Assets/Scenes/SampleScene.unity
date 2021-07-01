@@ -665,12 +665,12 @@ PrefabInstance:
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.data[0].Charatristic.Array.data[0].Easy
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.data[0].Charatristic.Array.data[0].Normal
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
@@ -695,6 +695,26 @@ PrefabInstance:
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.data[0].Charatristic.Array.data[1].Hard
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
+        type: 3}
+      propertyPath: _attackWaves.Array.data[1].Charatristic.Array.data[0].Easy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
+        type: 3}
+      propertyPath: _attackWaves.Array.data[1].Charatristic.Array.data[0].Normal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
+        type: 3}
+      propertyPath: _attackWaves.Array.data[1].Charatristic.Array.data[1].Normal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
+        type: 3}
+      propertyPath: _attackWaves.Array.data[1].Charatristic.Array.data[1].Easy
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -824,11 +844,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1129909790735140872, guid: 614a32dc6e855dd4f90b98ecc0efdecc,
-        type: 3}
-      propertyPath: _bulletCharacteristics.Damage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7186431050438182050, guid: 614a32dc6e855dd4f90b98ecc0efdecc,
         type: 3}
       propertyPath: _amountHelths
@@ -837,7 +852,7 @@ PrefabInstance:
     - target: {fileID: 7735312057865106369, guid: 614a32dc6e855dd4f90b98ecc0efdecc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7735312057865106369, guid: 614a32dc6e855dd4f90b98ecc0efdecc,
         type: 3}

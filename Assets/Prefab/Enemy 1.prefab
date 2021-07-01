@@ -197,7 +197,7 @@ MonoBehaviour:
     KeyTargets: 0
     FlightSpeed: 0.1
     TimeLife: 3
-    Damage: 5
+    Damage: 0
   _frequencyOfShots: 1
   _pausesBetweenShooting: 1
   _numberOfShotsPerRound:

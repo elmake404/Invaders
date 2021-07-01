@@ -4924,12 +4924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75671b5ecad87624a8ae2d4be8a91c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characteristics:
-    KeyTargets: 0
-    FlightSpeed: 0
-    TimeLife: 0
-    Damage: 0
-  _particle: {fileID: 301647500953006352}
+  _particle: {fileID: 19800000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
 --- !u!54 &3907682610138940215
 Rigidbody:
   m_ObjectHideFlags: 0

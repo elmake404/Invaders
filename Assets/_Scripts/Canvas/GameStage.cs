@@ -53,8 +53,8 @@ public class GameStage : MonoBehaviour
             case Stage.StartLevel:
 
                 _canvasManager.GameStageWindow(StageGame);
-                GameStageEvent.InvokeStartLevel();
                 IsGameFlowe = true;
+                GameStageEvent.InvokeStartLevel();
                 break;
 
             case Stage.WinGame:

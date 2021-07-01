@@ -53,8 +53,12 @@ public class LevelConditions : MonoBehaviour
 
     private bool _isWaveIsOver { get { return (_numberOfEnemiesInWave <= 0 && _enemiesInGame.Count <= 0); } }
     private int _numberOfEnemiesInWave, _numberWave;
+    private int _allEnemiesOnTheLevel, _killedEnemiesOnTheLevel, _numberOfSpawnedEnemies;
+    public float PorocentOfTheKilled => (float)_killedEnemiesOnTheLevel / _allEnemiesOnTheLevel;
+
     private void Awake()
     {
+        _allEnemiesOnTheLevel = GetAllEnemiesOnTheLevel();
         GameStageEvent.StartLevel += StartWar;
     }
     private void Start()
@@ -66,7 +70,7 @@ public class LevelConditions : MonoBehaviour
     {
         if (GameStage.IsGameFlowe)
         {
-            if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy)
+            if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy && _numberOfSpawnedEnemies< _allEnemiesOnTheLevel)
             {
                 List<DisembarkationPoint> points = new List<DisembarkationPoint>();
                 points.AddRange(_disembarkationPoints);
@@ -78,6 +82,7 @@ public class LevelConditions : MonoBehaviour
                     {
                         disembarkationPoint.SpawnEffect();
                         ActivationEnemy(disembarkationPoint);
+                        _numberOfSpawnedEnemies++;
                         break;
                     }
                     else
@@ -158,7 +163,6 @@ public class LevelConditions : MonoBehaviour
                 if (item.Value.Count > 0)
                     enemyID.Add(item.Key);
             }
-
             int ID = enemyID[Random.Range(0, enemyID.Count)];
             IEnemuPool enemu = PoolEnemy.Instance.GetEnemy(ID, disembarkationPoints.transform.position, disembarkationPoints.transform.rotation);
             LevelOfComplexityOfBehavior behavior = _enemieBehavior[ID][Random.Range(0, _enemieBehavior[ID].Count)];
@@ -170,8 +174,24 @@ public class LevelConditions : MonoBehaviour
     }
     private void DeathOfTheEnemy(IEnemuPool enemu)
     {
+        _killedEnemiesOnTheLevel++;
         _enemiesInGame.Remove(enemu);
+        if(_killedEnemiesOnTheLevel>=_allEnemiesOnTheLevel)
+        GameStage.Instance.ChangeStage(Stage.WinGame);
     }
+    public int GetAllEnemiesOnTheLevel()
+    {
+        int allEnemiesOnTheLevel = 0;
+        for (int i = 0; i < _attackWaves.Length; i++)
+        {
+            for (int j = 0; j < _attackWaves[i].Charatristic.Count; j++)
+            {
+                allEnemiesOnTheLevel += _attackWaves[i].Charatristic[j].CountEnemy;
+            }
+        }
+        return allEnemiesOnTheLevel;
+    }
+
     public int GetMaxActivatedEnemy()
     {
         int ActivatedEnemy = 0;

@@ -25,6 +25,7 @@ public class PoolBullet : MonoBehaviour
     public Bullet GetBullet(Vector3 position, Quaternion rotation)
     {
         Bullet bullet;
+        
         if (_bulletsPool.Count > 0)
         {
 
@@ -42,7 +43,7 @@ public class PoolBullet : MonoBehaviour
     }
     public void ReturnToPool(Bullet bullet)
     {
-        if(!_bulletsPool.Contains(bullet))
+        if (!_bulletsPool.Contains(bullet))
         {
             _bulletsPool.Enqueue(bullet);
             bullet.gameObject.SetActive(false);
