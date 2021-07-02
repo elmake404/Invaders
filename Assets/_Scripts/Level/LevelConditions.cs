@@ -23,11 +23,21 @@ public class AttackWaves
     [HideInInspector]
     public string Name;
     [SerializeField]
-    private int _maximNumumberOfLivingEnemy; public int MaximNumumberOfLivingEnemy
-    { get { return _maximNumumberOfLivingEnemy; } }
+    public List<SpawnCharatristic> Charatristic;
 
     [SerializeField]
-    public List<SpawnCharatristic> Charatristic;
+    private int _maximNumumberOfLivingEnemy; public int MaximNumumberOfLivingEnemy
+    { get { return _allEnemiesInAWave<_maximNumumberOfLivingEnemy?_allEnemiesInAWave:_maximNumumberOfLivingEnemy; } }
+    public int _allEnemiesInAWave { get {
+
+            int count = 0;
+            for (int i = 0; i < Charatristic.Count; i++)
+            {
+                count += Charatristic[i].CountEnemy;
+            }
+            return count;
+        } }
+
 
 
     public void AddSpawn(EnemyLife enemy)
@@ -70,13 +80,13 @@ public class LevelConditions : MonoBehaviour
     {
         if (GameStage.IsGameFlowe)
         {
-            if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy && _numberOfSpawnedEnemies< _allEnemiesOnTheLevel)
+
+            if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy && _numberOfEnemiesInWave!=0)
             {
                 List<DisembarkationPoint> points = new List<DisembarkationPoint>();
                 points.AddRange(_disembarkationPoints);
                 while (true)
                 {
-
                     DisembarkationPoint disembarkationPoint = points[Random.Range(0, points.Count)];
                     if (disembarkationPoint.CheckFree())
                     {
@@ -87,7 +97,6 @@ public class LevelConditions : MonoBehaviour
                     }
                     else
                     {
-
                         points.Remove(disembarkationPoint);
                     }
                     if (points.Count <= 0) break;
@@ -124,6 +133,10 @@ public class LevelConditions : MonoBehaviour
 
         foreach (var item in _disembarkationPoints)
         {
+            if (true)
+            {
+
+            }
             if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy)
             {
                 ActivationEnemy(item);
@@ -139,6 +152,7 @@ public class LevelConditions : MonoBehaviour
         for (int j = 0; j < _attackWave.Charatristic.Count; j++)
         {
             _numberOfEnemiesInWave += _attackWave.Charatristic[j].CountEnemy;
+
             _enemieBehavior[_attackWave.Charatristic[j].Enemy.EnemyID()] = new List<LevelOfComplexityOfBehavior>();
 
             for (int i = 0; i < _attackWave.Charatristic[j].Easy; i++)
@@ -167,15 +181,11 @@ public class LevelConditions : MonoBehaviour
 
             int ID = enemyID[Random.Range(0, enemyID.Count)];
             IEnemuPool enemu = PoolEnemy.Instance.GetEnemy(ID, disembarkationPoints.transform.position, disembarkationPoints.transform.rotation);
-            //if (ID == 1)
-            //{
-            //    Debug.Log(enemu.GetObject().transform.position);
-            //}
             LevelOfComplexityOfBehavior behavior = _enemieBehavior[ID][Random.Range(0, _enemieBehavior[ID].Count)];
 
             _enemieBehavior[ID].Remove(behavior);
-            //if (ID != 1)
-                enemu.Activation(_targetEnemy, behavior);
+
+            enemu.Activation(_targetEnemy, behavior);
             _enemiesInGame.Add(enemu);
             _numberOfEnemiesInWave--;
         }
@@ -184,18 +194,19 @@ public class LevelConditions : MonoBehaviour
     {
         _killedEnemiesOnTheLevel++;
         _enemiesInGame.Remove(enemu);
-        if(_killedEnemiesOnTheLevel>=_allEnemiesOnTheLevel)
-        GameStage.Instance.ChangeStage(Stage.WinGame);
+        if (_killedEnemiesOnTheLevel >= _allEnemiesOnTheLevel)
+            GameStage.Instance.ChangeStage(Stage.WinGame);
     }
     public int GetAllEnemiesOnTheLevel()
     {
         int allEnemiesOnTheLevel = 0;
         for (int i = 0; i < _attackWaves.Length; i++)
         {
-            for (int j = 0; j < _attackWaves[i].Charatristic.Count; j++)
-            {
-                allEnemiesOnTheLevel += _attackWaves[i].Charatristic[j].CountEnemy;
-            }
+            allEnemiesOnTheLevel += _attackWaves[i]._allEnemiesInAWave;
+            //for (int j = 0; j < _attackWaves[i].Charatristic.Count; j++)
+            //{
+            //    _attackWaves[i].Charatristic[j].CountEnemy;
+            //}
         }
         return allEnemiesOnTheLevel;
     }

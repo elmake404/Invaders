@@ -614,7 +614,7 @@ PrefabInstance:
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
@@ -629,7 +629,7 @@ PrefabInstance:
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.data[1]._maximNumumberOfLivingEnemy
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
@@ -998,12 +998,22 @@ PrefabInstance:
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.data[0].Charatristic.Array.data[1].Random
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
       propertyPath: _attackWaves.Array.data[0].Charatristic.Array.data[0].Random
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
+        type: 3}
+      propertyPath: _attackWaves.Array.data[1].Charatristic.Array.data[0].Random
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665410733362630114, guid: abd66bfe602ccf4469ba4b63a72bb789,
+        type: 3}
+      propertyPath: _attackWaves.Array.data[1].Charatristic.Array.data[1].Random
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4237631908785474913, guid: abd66bfe602ccf4469ba4b63a72bb789,
         type: 3}
@@ -1141,6 +1151,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _bulletCharacteristics.Damage
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129909790735140872, guid: 614a32dc6e855dd4f90b98ecc0efdecc,
+        type: 3}
+      propertyPath: _weaponCharacteristics.BulletCharacteristics.FlightSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129909790735140872, guid: 614a32dc6e855dd4f90b98ecc0efdecc,
+        type: 3}
+      propertyPath: _weaponCharacteristics.FrequencyOfShots
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7186431050438182050, guid: 614a32dc6e855dd4f90b98ecc0efdecc,
         type: 3}

@@ -39,8 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7735312057865106369}
-  - component: {fileID: 7735312057865106374}
-  - component: {fileID: 7735312057865106375}
   - component: {fileID: 7735312057865106372}
   - component: {fileID: 6963404618275881569}
   - component: {fileID: 1129909790735140872}
@@ -69,53 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7735312057865106374
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7735312057865106373}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7735312057865106375
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7735312057865106373}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!136 &7735312057865106372
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -162,8 +113,14 @@ MonoBehaviour:
   _weaponCharacteristics:
     BulletCharacteristics:
       KeyTargets: 1
+      MeshRendererModel: {fileID: 6007781190227085768, guid: 0c686b0b845a4554d879c038192500f8,
+        type: 3}
+      MeshFilterModel: {fileID: 5122182673018945566, guid: 0c686b0b845a4554d879c038192500f8,
+        type: 3}
+      Particle: {fileID: 1232288541299567271, guid: 7a12f6cc0ce711f45b1abf4540b12e32,
+        type: 3}
       FlightSpeed: 0.3
-      TimeLife: 1
+      TimeLife: 2
       Damage: 3
     NumberOfCartridges: -1
     FrequencyOfShots: 0.5

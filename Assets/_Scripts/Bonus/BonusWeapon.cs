@@ -10,6 +10,6 @@ public class BonusWeapon : MonoBehaviour
     {
         gameObject.SetActive(false);
 
-        return _additionalWeaponCharacteristics;
+        return new Weapon( _additionalWeaponCharacteristics);
     }
 }

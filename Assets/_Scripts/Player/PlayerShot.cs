@@ -5,6 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class Weapon
 {
+    public Weapon(Weapon weapon)
+    {
+        BulletCharacteristics = weapon.BulletCharacteristics;
+        NumberOfCartridges = weapon.NumberOfCartridges;
+        FrequencyOfShots = weapon.FrequencyOfShots;
+    }
     [SerializeField]
     public BulletCharacteristics BulletCharacteristics;
     [SerializeField]
@@ -25,7 +31,7 @@ public class PlayerShot : MonoBehaviour
     private Transform _shotPos;
     [SerializeField]
     private Weapon _weaponCharacteristics;
-    private Weapon _additionalWeaponCharacteristics = new Weapon();
+    private Weapon _additionalWeaponCharacteristics;
 
     void Awake()
     {
@@ -51,7 +57,7 @@ public class PlayerShot : MonoBehaviour
     }
     private Weapon GetBulletCharacteristics()
     {
-        if (_additionalWeaponCharacteristics.NumberOfCartridges > 0)
+        if (_additionalWeaponCharacteristics != null && _additionalWeaponCharacteristics.NumberOfCartridges > 0)
         {
             return _additionalWeaponCharacteristics;
         }
@@ -63,6 +69,6 @@ public class PlayerShot : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         BonusWeapon bonus = other.GetComponent<BonusWeapon>();
-        if (bonus != null) _additionalWeaponCharacteristics= bonus.GetWeapon();
+        if (bonus != null) _additionalWeaponCharacteristics = bonus.GetWeapon();
     }
 }

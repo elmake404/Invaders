@@ -168,6 +168,12 @@ MonoBehaviour:
   _animator: {fileID: 7974837149220545957}
   _bulletCharacteristics:
     KeyTargets: 0
+    MeshRendererModel: {fileID: 6007781190227085768, guid: a753f840afc79264286773628d30227e,
+      type: 3}
+    MeshFilterModel: {fileID: 5122182673018945566, guid: a753f840afc79264286773628d30227e,
+      type: 3}
+    Particle: {fileID: 1232288541299567271, guid: b8aebe8f4eb02f341860202681d1d3d7,
+      type: 3}
     FlightSpeed: 0.3
     TimeLife: 3
     Damage: 5
