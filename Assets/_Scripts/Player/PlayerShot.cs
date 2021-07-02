@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Weapon
+{
+    [SerializeField]
+    public BulletCharacteristics BulletCharacteristics;
+    [SerializeField]
+    public int NumberOfCartridges;
+
+    [SerializeField]
+    public float FrequencyOfShots;
+
+}
 public class PlayerShot : MonoBehaviour
 {
     public delegate void GettingAnInteger(int numberOfCartridges);
@@ -12,13 +24,8 @@ public class PlayerShot : MonoBehaviour
     [SerializeField]
     private Transform _shotPos;
     [SerializeField]
-    private BulletCharacteristics _bulletCharacteristics;
-    private BulletCharacteristics _additionalBulletCharacteristics;
-
-    private int _numberOfCartridges;
-
-    [SerializeField]
-    private float _frequencyOfShots;
+    private Weapon _weaponCharacteristics;
+    private Weapon _additionalWeaponCharacteristics = new Weapon();
 
     void Awake()
     {
@@ -27,35 +34,35 @@ public class PlayerShot : MonoBehaviour
     private void StartShooting()
     {
         GameStageEvent.StartLevel -= StartShooting;
-        _animator.SetBool("StartShooting",true);
+        _animator.SetBool("StartShooting", true);
         StartCoroutine(Shooting());
     }
     private IEnumerator Shooting()
     {
         while (GameStage.IsGameFlowe)
         {
-            yield return new WaitForSeconds(_frequencyOfShots);
+            Weapon weapon = GetBulletCharacteristics();
+            yield return new WaitForSeconds(weapon.FrequencyOfShots);
             Bullet bullet = PoolBullet.Instance.GetBullet(_shotPos.position, _shotPos.rotation);
-            BulletCharacteristics bulletCharacteristics = GetBulletCharacteristics();
-            bullet.Initialization(bulletCharacteristics);
-            _numberOfCartridges--;
-            Shot?.Invoke(_numberOfCartridges);
+            bullet.Initialization(weapon.BulletCharacteristics);
+            weapon.NumberOfCartridges--;
+            Shot?.Invoke(weapon.NumberOfCartridges);
         }
     }
-    private BulletCharacteristics GetBulletCharacteristics()
+    private Weapon GetBulletCharacteristics()
     {
-        if (_numberOfCartridges>0)
+        if (_additionalWeaponCharacteristics.NumberOfCartridges > 0)
         {
-            return _additionalBulletCharacteristics;
+            return _additionalWeaponCharacteristics;
         }
         else
         {
-            return _bulletCharacteristics;
+            return _weaponCharacteristics;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         BonusWeapon bonus = other.GetComponent<BonusWeapon>();
-        if (bonus != null) bonus.GetWeapon(out _additionalBulletCharacteristics,out _numberOfCartridges);
+        if (bonus != null) _additionalWeaponCharacteristics= bonus.GetWeapon();
     }
 }

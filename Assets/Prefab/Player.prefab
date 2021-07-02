@@ -159,12 +159,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 2147633918179611817}
   _shotPos: {fileID: 7663483320250834083}
-  _bulletCharacteristics:
-    KeyTargets: 1
-    FlightSpeed: 0.3
-    TimeLife: 3
-    Damage: 3
-  _frequencyOfShots: 0.1
+  _weaponCharacteristics:
+    BulletCharacteristics:
+      KeyTargets: 1
+      FlightSpeed: 0.3
+      TimeLife: 1
+      Damage: 3
+    NumberOfCartridges: -1
+    FrequencyOfShots: 0.5
 --- !u!114 &7186431050438182050
 MonoBehaviour:
   m_ObjectHideFlags: 0

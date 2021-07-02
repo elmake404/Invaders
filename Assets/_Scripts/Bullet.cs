@@ -15,6 +15,7 @@ public struct BulletCharacteristics
 
 public class Bullet : MonoBehaviour 
 {
+    [SerializeField]
     private BulletCharacteristics _characteristics;
     [SerializeField]
     private ParticleSystem _particle;

@@ -5,13 +5,11 @@ using UnityEngine;
 public class BonusWeapon : MonoBehaviour
 {
     [SerializeField]
-    private BulletCharacteristics _additionalBulletCharacteristics;
-    [SerializeField]
-    private int _numberOfCartridges;
-    public void GetWeapon(out BulletCharacteristics bulletCharacteristics,out int numberOfCaridges)
+    private Weapon _additionalWeaponCharacteristics;
+    public Weapon GetWeapon()
     {
-        bulletCharacteristics = _additionalBulletCharacteristics;
-        numberOfCaridges = _numberOfCartridges;
         gameObject.SetActive(false);
+
+        return _additionalWeaponCharacteristics;
     }
 }

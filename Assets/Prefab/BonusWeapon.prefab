@@ -109,12 +109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8eff3b5442a904180d8acede44e5de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _additionalBulletCharacteristics:
-    KeyTargets: 1
-    FlightSpeed: 1
-    TimeLife: 3
-    Damage: 3
-  _numberOfCartridges: 30
+  _additionalWeaponCharacteristics:
+    BulletCharacteristics:
+      KeyTargets: 1
+      FlightSpeed: 0.4
+      TimeLife: 2
+      Damage: 3
+    NumberOfCartridges: 30
+    FrequencyOfShots: 0.1
 --- !u!114 &4268106631536173230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c893d29ebfaf4334895f852d279b943b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {x: 0, y: 0, z: 0}
   _speed: 0.1
 --- !u!114 &7375526828317832443
 MonoBehaviour:
@@ -141,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216946c7bf1f1554dbce42e68f7a0d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayBeforeReturn: 0
+  _selfReturn: 0
 --- !u!1001 &8402777974012080647
 PrefabInstance:
   m_ObjectHideFlags: 0
