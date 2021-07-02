@@ -12,14 +12,14 @@ public class EnemyLife : HeathMeter, IEnemuPool
     [SerializeField]
     private Transform _model;
     [SerializeField]
-    private Collider _collider;
-    [SerializeField]
     private Animator _animator;
     [SerializeField]
     private AnimationClip _animation;
+    [SerializeField]
+    private int _activeLayer, _deactiveLayer;
 
     [SerializeField]
-    private int _enemyId; 
+    private int _enemyId;
 
     public bool IsRevived { get; private set; }
 
@@ -35,9 +35,9 @@ public class EnemyLife : HeathMeter, IEnemuPool
     {
         float time = 0;
 
-        if (_animation!=null)
+        if (_animation != null)
         {
-            _animator.SetBool("Necromancy",true);
+            _animator.SetBool("Necromancy", true);
             yield return new WaitForSeconds(0.02f);
             _animator.SetBool("Necromancy", false);
             time = _animation.length;
@@ -46,13 +46,13 @@ public class EnemyLife : HeathMeter, IEnemuPool
         yield return new WaitForSeconds(time);
 
         IsRevived = true;
-        _collider.enabled = true;
+        gameObject.layer = _activeLayer;
         ExposeHealth();
         ActivationEnemy?.Invoke(target, slevelOfComplexityOfBehavior);
     }
     public void RetornToPool()
     {
-        _collider.enabled = false;
+        gameObject.layer = _deactiveLayer;
         IsRevived = false;
         PoolMenedger.GetObject(_dummyDeath.name, _model.position, _model.rotation);
         PoolEnemy.Instance.ReturnToPool(this);

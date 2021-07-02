@@ -121,6 +121,7 @@ public class LevelConditions : MonoBehaviour
         GameStageEvent.StartLevel -= StartWar;
 
         ActivationNextWave();
+
         foreach (var item in _disembarkationPoints)
         {
             if (_enemiesInGame.Count < _attackWave.MaximNumumberOfLivingEnemy)
@@ -163,11 +164,18 @@ public class LevelConditions : MonoBehaviour
                 if (item.Value.Count > 0)
                     enemyID.Add(item.Key);
             }
+
             int ID = enemyID[Random.Range(0, enemyID.Count)];
             IEnemuPool enemu = PoolEnemy.Instance.GetEnemy(ID, disembarkationPoints.transform.position, disembarkationPoints.transform.rotation);
+            //if (ID == 1)
+            //{
+            //    Debug.Log(enemu.GetObject().transform.position);
+            //}
             LevelOfComplexityOfBehavior behavior = _enemieBehavior[ID][Random.Range(0, _enemieBehavior[ID].Count)];
+
             _enemieBehavior[ID].Remove(behavior);
-            enemu.Activation(_targetEnemy, behavior);
+            //if (ID != 1)
+                enemu.Activation(_targetEnemy, behavior);
             _enemiesInGame.Add(enemu);
             _numberOfEnemiesInWave--;
         }

@@ -67,8 +67,10 @@ public class NavEnemy : MonoBehaviour
     public void IncreasePrioriti() => Priority++;
     public void NewRoute(LevelOfComplexityOfBehavior slevelOfComplexityOfBehavior, bool reCall)
     {
+        if (!_agent.enabled) _agent.enabled = true;
         _slevelOfComplexityOfBehavior = slevelOfComplexityOfBehavior;
         _namberPoints = 0;
         _route = Battlefield.Instens.GetPointsOnBattelefield(slevelOfComplexityOfBehavior, transform.position, reCall);
     }
+    public void WarpAgentToPosition()=> _agent.Warp(transform.position);
 }

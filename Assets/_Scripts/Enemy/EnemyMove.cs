@@ -116,4 +116,5 @@ public class EnemyMove : MonoBehaviour
             return 7;
         }
     }
+    private void WarpAgentToPosition() => _navEnemy.WarpAgentToPosition();
 }

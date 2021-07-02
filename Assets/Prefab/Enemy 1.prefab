@@ -69,15 +69,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7933685559946052280}
-  - component: {fileID: 5382398245459346694}
-  - component: {fileID: 6523851846300702619}
   - component: {fileID: 2349393642961943154}
   - component: {fileID: 527999690364301525}
   - component: {fileID: 8273552120440685110}
   - component: {fileID: 2425603588935556882}
   - component: {fileID: -3089054163029287228}
   - component: {fileID: -5584032817464656104}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,53 +100,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5382398245459346694
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4755353396581620987}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6523851846300702619
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4755353396581620987}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: b1b1b22cf105bdb46a657ae776179c82, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!136 &2349393642961943154
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -221,9 +172,10 @@ MonoBehaviour:
   _dummyDeath: {fileID: 5750001631555830432, guid: 2e88426ebb90199408c89d271db577b8,
     type: 3}
   _model: {fileID: 2308929877236983889}
-  _collider: {fileID: 2349393642961943154}
   _animator: {fileID: 2308929877227194335}
   _animation: {fileID: 0}
+  _activeLayer: 9
+  _deactiveLayer: 11
   _enemyId: 2
 --- !u!114 &-3089054163029287228
 MonoBehaviour:

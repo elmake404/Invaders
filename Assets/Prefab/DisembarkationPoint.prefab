@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   _radus: 1
   _FBXSpawn: {fileID: 8681068442439199826}
 --- !u!1001 &8681068442454799248
